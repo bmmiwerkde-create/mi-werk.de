@@ -15,18 +15,18 @@
     --grau: #888;
     --rand: #E8E4DC;
   }
-
+ 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
+ 
   html { scroll-behavior: smooth; }
-
+ 
   body {
     background: var(--schwarz);
     color: var(--weiss);
     font-family: 'DM Sans', sans-serif;
     overflow-x: hidden;
   }
-
+ 
   /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -36,7 +36,7 @@
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(200,149,108,0.1);
   }
-
+ 
   .logo {
     display: flex; align-items: center; gap: 10px; cursor: pointer;
     text-decoration: none;
@@ -50,7 +50,7 @@
     font-size: 20px; font-weight: 700; color: var(--weiss);
   }
   .logo-name span { color: var(--gold); }
-
+ 
   .nav-btn {
     background: var(--gold); color: var(--schwarz);
     border: none; padding: 10px 24px;
@@ -60,7 +60,7 @@
     display: inline-block;
   }
   .nav-btn:hover { background: var(--weiss); }
-
+ 
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
@@ -68,7 +68,7 @@
     padding: 120px 48px 80px;
     position: relative; overflow: hidden;
   }
-
+ 
   .hero-bg {
     position: absolute; inset: 0; pointer-events: none;
   }
@@ -89,9 +89,9 @@
     left: 55%; width: 1px;
     background: linear-gradient(to bottom, transparent, rgba(200,149,108,0.15), transparent);
   }
-
+ 
   .hero-inhalt { max-width: 640px; position: relative; z-index: 1; }
-
+ 
   .hero-tag {
     display: inline-flex; align-items: center; gap: 8px;
     background: rgba(200,149,108,0.1);
@@ -101,7 +101,7 @@
   .hero-tag-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: puls 2s infinite; }
   @keyframes puls { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
   .hero-tag span { font-size: 12px; font-weight: 600; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; }
-
+ 
   .hero-titel {
     font-family: 'Playfair Display', serif;
     font-size: clamp(48px, 6vw, 76px);
@@ -110,15 +110,15 @@
   }
   .hero-titel .gold { color: var(--gold); }
   .hero-titel .italic { font-style: italic; }
-
+ 
   .hero-text {
     font-size: 17px; color: var(--grau);
     line-height: 1.75; font-weight: 300;
     max-width: 520px; margin-bottom: 40px;
   }
-
+ 
   .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-
+ 
   .btn-haupt {
     background: var(--weiss); color: var(--schwarz);
     border: none; padding: 16px 36px;
@@ -127,7 +127,7 @@
     cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block;
   }
   .btn-haupt:hover { background: var(--gold); color: var(--schwarz); transform: translateY(-2px); }
-
+ 
   .btn-ghost {
     background: transparent; color: var(--weiss);
     border: 1px solid rgba(255,255,255,0.2);
@@ -137,7 +137,7 @@
     cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block;
   }
   .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
-
+ 
   /* ── ZAHLEN ── */
   .zahlen {
     padding: 60px 48px;
@@ -159,25 +159,25 @@
     font-size: 11px; font-weight: 600; color: var(--grau);
     letter-spacing: 0.1em; text-transform: uppercase;
   }
-
+ 
   /* ── VORTEILE ── */
   .vorteile { padding: 100px 48px; }
-
+ 
   .abschnitt-label {
     font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
     text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
   }
-
+ 
   .abschnitt-titel {
     font-family: 'Playfair Display', serif;
     font-size: clamp(32px, 4vw, 48px); font-weight: 700;
     line-height: 1.15; margin-bottom: 60px;
   }
-
+ 
   .vorteile-grid {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
   }
-
+ 
   .vorteil {
     padding: 36px 32px;
     border: 1px solid rgba(200,149,108,0.1);
@@ -191,7 +191,7 @@
   }
   .vorteil:hover { background: rgba(200,149,108,0.05); }
   .vorteil:hover::before { transform: scaleX(1); }
-
+ 
   .vorteil-num {
     font-family: 'Playfair Display', serif;
     font-size: 48px; font-weight: 900; color: rgba(200,149,108,0.15);
@@ -202,11 +202,11 @@
     margin-bottom: 10px; line-height: 1.3;
   }
   .vorteil-text { font-size: 14px; color: var(--grau); line-height: 1.7; }
-
-
+ 
+ 
   /* ── ANMELDUNG ── */
   .anmeldung { padding: 100px 48px; }
-
+ 
   .anmeldung-box {
     max-width: 600px; margin: 0 auto;
     border: 1px solid rgba(200,149,108,0.2);
@@ -218,16 +218,16 @@
     top: 0; left: 0; right: 0; height: 3px;
     background: linear-gradient(90deg, var(--gold), var(--gold-hell), var(--gold));
   }
-
+ 
   .anmeldung-titel {
     font-family: 'Playfair Display', serif;
     font-size: 36px; font-weight: 700; text-align: center;
     margin-bottom: 10px;
   }
   .anmeldung-sub { font-size: 15px; color: var(--grau); text-align: center; margin-bottom: 36px; }
-
+ 
   .form-zeile { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
-
+ 
   .eingabe-gruppe { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
   .eingabe-label {
     font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
@@ -243,9 +243,9 @@
   }
   .eingabe:focus { outline: none; border-color: var(--gold); }
   .eingabe::placeholder { color: #444; }
-
+ 
   select.eingabe { cursor: pointer; appearance: none; }
-
+ 
   .form-btn {
     width: 100%; background: var(--gold); color: var(--schwarz);
     border: none; padding: 16px;
@@ -254,9 +254,9 @@
     cursor: pointer; transition: all 0.2s; margin-top: 8px;
   }
   .form-btn:hover { background: var(--weiss); transform: translateY(-2px); }
-
+ 
   .form-hinweis { font-size: 12px; color: #444; text-align: center; margin-top: 14px; }
-
+ 
   /* ── FOOTER ── */
   footer {
     padding: 40px 48px;
@@ -271,7 +271,7 @@
   .footer-text { font-size: 12px; color: #444; }
   .footer-kontakt { font-size: 13px; color: var(--grau); text-align: right; }
   .footer-kontakt a { color: var(--gold); text-decoration: none; }
-
+ 
   /* ── SUCCESS ── */
   .success-overlay {
     display: none; position: fixed; inset: 0; z-index: 200;
@@ -297,7 +297,7 @@
     font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase;
     cursor: pointer; margin-top: 10px;
   }
-
+ 
   @media (max-width: 768px) {
     nav { padding: 16px 24px; }
     .hero { padding: 100px 24px 60px; }
@@ -312,7 +312,7 @@
 </style>
 </head>
 <body>
-
+ 
 <!-- NAV -->
 <nav>
   <a href="#" class="logo">
@@ -321,7 +321,7 @@
   </a>
   <a href="#anmeldung" class="nav-btn">Jetzt eintragen</a>
 </nav>
-
+ 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg">
@@ -330,10 +330,6 @@
     <div class="hero-linie"></div>
   </div>
   <div class="hero-inhalt">
-    <div class="hero-tag">
-      <div class="hero-tag-dot"></div>
-      <span>Jetzt in NRW & Koblenz starten</span>
-    </div>
     <h1 class="hero-titel">
       Mehr Aufträge.<br>
       <span class="gold italic">Weniger</span><br>
@@ -348,7 +344,7 @@
     </div>
   </div>
 </section>
-
+ 
     <div class="zahl-text">Handwerker</div>
   </div>
   <div class="zahl-box">
@@ -364,7 +360,7 @@
     <div class="zahl-text">Einstiegspreis</div>
   </div>
 </div>
-
+ 
 <!-- VORTEILE -->
 <section class="vorteile" id="vorteile">
   <div class="abschnitt-label">Warum Mi-Werk</div>
@@ -387,14 +383,15 @@
     </div>
   </div>
 </section>
-
-
+ 
+ 
 <!-- ANMELDUNG -->
 <section class="anmeldung" id="anmeldung">
   <div class="anmeldung-box">
+    <form action="https://formspree.io/f/xgoqavpa" method="POST">
     <div class="anmeldung-titel">Jetzt eintragen</div>
     <p class="anmeldung-sub">Trag dich auf die Warteliste ein — wir melden uns bei dir.</p>
-
+ 
     <div class="form-zeile">
       <div class="eingabe-gruppe">
         <label class="eingabe-label">Vorname</label>
@@ -405,17 +402,17 @@
         <input class="eingabe" type="text" placeholder="Mustermann" id="nachname">
       </div>
     </div>
-
+ 
     <div class="eingabe-gruppe">
       <label class="eingabe-label">Telefonnummer</label>
       <input class="eingabe" type="tel" placeholder="0157 ..." id="telefon">
     </div>
-
+ 
     <div class="eingabe-gruppe">
       <label class="eingabe-label">E-Mail</label>
       <input class="eingabe" type="email" placeholder="max@handwerk.de" id="email">
     </div>
-
+ 
     <div class="form-zeile">
       <div class="eingabe-gruppe">
         <label class="eingabe-label">Gewerk</label>
@@ -435,12 +432,13 @@
         <input class="eingabe" type="text" placeholder="Bochum, 44801" id="stadt">
       </div>
     </div>
-
-    <button class="form-btn" onclick="absenden()">Auf Warteliste eintragen →</button>
+ 
+    <button class="form-btn" type="submit">Auf Warteliste eintragen →</button>
     <p class="form-hinweis">Kostenlos & unverbindlich · Kein Spam · Jederzeit abmeldbar</p>
+    </form>
   </div>
 </section>
-
+ 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Mi<span>-Werk</span></div>
@@ -450,7 +448,7 @@
     <a href="mailto:bm.miwerk.de@gmail.com">bm.miwerk.de@gmail.com</a>
   </div>
 </footer>
-
+ 
 <!-- SUCCESS -->
 <div class="success-overlay" id="success">
   <div class="success-check">✓</div>
@@ -458,13 +456,13 @@
   <p class="success-text">Du stehst auf der Warteliste. Wir melden uns in den nächsten Tagen bei dir.</p>
   <button class="success-btn" onclick="document.getElementById('success').classList.remove('aktiv')">Schließen</button>
 </div>
-
+ 
 <script>
   function absenden() {
     const vorname = document.getElementById('vorname').value;
     const telefon = document.getElementById('telefon').value;
     const gewerk = document.getElementById('gewerk').value;
-
+ 
     if (!vorname || !telefon || !gewerk) {
       alert('Bitte fülle alle Pflichtfelder aus.');
       return;
@@ -472,6 +470,7 @@
     document.getElementById('success').classList.add('aktiv');
   }
 </script>
-
+ 
 </body>
 </html>
+ 
