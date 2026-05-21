@@ -330,6 +330,10 @@
     <div class="hero-linie"></div>
   </div>
   <div class="hero-inhalt">
+    <div class="hero-tag">
+      <div class="hero-tag-dot"></div>
+      <span>Jetzt in NRW & Koblenz starten</span>
+    </div>
     <h1 class="hero-titel">
       Mehr Aufträge.<br>
       <span class="gold italic">Weniger</span><br>
@@ -369,7 +373,7 @@
     <div class="vorteil">
       <div class="vorteil-num">01</div>
       <div class="vorteil-titel">Faire Flatrate — kein Bezahlen pro Lead</div>
-      <div class="vorteil-text">Du zahlst einen festen Monatsbeitrag. Keine bösen Überraschungen am Monatsende.</div>
+      <div class="vorteil-text">Anders als MyHammer zahlst du einen festen Monatsbeitrag. Keine bösen Überraschungen am Monatsende.</div>
     </div>
     <div class="vorteil">
       <div class="vorteil-num">02</div>
@@ -388,45 +392,52 @@
 <!-- ANMELDUNG -->
 <section class="anmeldung" id="anmeldung">
   <div class="anmeldung-box">
-    <form action="https://formspree.io/f/xgoqavpa" method="POST">
     <div class="anmeldung-titel">Jetzt eintragen</div>
     <p class="anmeldung-sub">Trag dich auf die Warteliste ein — wir melden uns bei dir.</p>
 
     <div class="form-zeile">
       <div class="eingabe-gruppe">
         <label class="eingabe-label">Vorname</label>
-        <input class="eingabe" type="text" name="vorname" placeholder="Max" id="vorname">
+        <input class="eingabe" type="text" placeholder="Max" id="vorname">
       </div>
       <div class="eingabe-gruppe">
         <label class="eingabe-label">Nachname</label>
-        <input class="eingabe" type="text" name="nachname" placeholder="Mustermann" id="nachname">
+        <input class="eingabe" type="text" placeholder="Mustermann" id="nachname">
       </div>
     </div>
 
     <div class="eingabe-gruppe">
       <label class="eingabe-label">Telefonnummer</label>
-      <input class="eingabe" type="tel" name="telefon" placeholder="0157 ..." id="telefon">
+      <input class="eingabe" type="tel" placeholder="0157 ..." id="telefon">
     </div>
 
     <div class="eingabe-gruppe">
       <label class="eingabe-label">E-Mail</label>
-      <input class="eingabe" type="email" name="email" placeholder="max@handwerk.de" id="email">
+      <input class="eingabe" type="email" placeholder="max@handwerk.de" id="email">
     </div>
 
     <div class="form-zeile">
       <div class="eingabe-gruppe">
         <label class="eingabe-label">Gewerk</label>
-        <input class="eingabe" type="text" name="gewerk" placeholder="z.B. Elektriker, Maler…" id="gewerk">
+        <select class="eingabe" id="gewerk">
+          <option value="">Bitte wählen...</option>
+          <option>Elektriker</option>
+          <option>Maler</option>
+          <option>Klempner</option>
+          <option>Tischler</option>
+          <option>Fliesenleger</option>
+          <option>Dachdecker</option>
+          <option>Sonstiges</option>
+        </select>
       </div>
       <div class="eingabe-gruppe">
         <label class="eingabe-label">Stadt / PLZ</label>
-        <input class="eingabe" type="text" name="stadt" placeholder="Bochum, 44801" id="stadt">
+        <input class="eingabe" type="text" placeholder="Bochum, 44801" id="stadt">
       </div>
     </div>
 
-    <button class="form-btn" type="submit">Auf Warteliste eintragen →</button>
+    <button class="form-btn" onclick="absenden()">Auf Warteliste eintragen →</button>
     <p class="form-hinweis">Kostenlos & unverbindlich · Kein Spam · Jederzeit abmeldbar</p>
-    </form>
   </div>
 </section>
 
