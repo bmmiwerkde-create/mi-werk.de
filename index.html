@@ -6,472 +6,582 @@
 <title>Mi-Werk — Handwerker in deiner Region</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --schwarz: #111010;
-    --gold: #C8956C;
-    --gold-hell: #D4A574;
-    --gold-dunkel: #A07040;
-    --weiss: #FAFAF7;
-    --grau: #888;
-    --rand: #E8E4DC;
-  }
+:root {
+  --s: #000000;
+  --s2: #0A0A0A;
+  --s3: #141414;
+  --g: #C8956C;
+  --g2: #D4A574;
+  --w: #FFFFFF;
+  --gr: #AAAAAA;
+  --gr2: #CCCCCC;
+  --rand: rgba(200,149,108,0.2);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--s);color:var(--w);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:18px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(14,14,14,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--rand);}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none;}
+.logo-box{width:32px;height:32px;background:var(--g);display:flex;align-items:center;justify-content:center;font-size:15px;}
+.logo-txt{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--w);}
+.logo-txt span{color:var(--g);}
+.nav-links{display:flex;align-items:center;gap:32px;}
+.nav-link{font-size:13px;font-weight:600;color:var(--gr2);letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;transition:color 0.2s;text-decoration:none;border:none;background:none;}
+.nav-link:hover,.nav-link.aktiv{color:var(--g);}
+.nav-btn{background:var(--g);color:var(--s);border:none;padding:10px 22px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
+.nav-btn:hover{background:var(--w);}
 
-  html { scroll-behavior: smooth; }
+/* PAGES */
+.page{display:none;padding-top:72px;min-height:100vh;}
+.page.aktiv{display:block;}
 
-  body {
-    background: var(--schwarz);
-    color: var(--weiss);
-    font-family: 'DM Sans', sans-serif;
-    overflow-x: hidden;
-  }
+/* ─── STARTSEITE ─── */
+.hero{padding:80px 48px 60px;position:relative;overflow:hidden;min-height:85vh;display:flex;align-items:center;}
+.hero-deko{position:absolute;inset:0;pointer-events:none;}
+.hero-k1{position:absolute;width:700px;height:700px;top:-150px;right:-150px;border:1px solid rgba(200,149,108,0.06);border-radius:50%;}
+.hero-k2{position:absolute;width:450px;height:450px;top:-50px;right:0;border:1px solid rgba(200,149,108,0.04);border-radius:50%;}
+.hero-linie{position:absolute;top:0;bottom:0;right:42%;width:1px;background:linear-gradient(to bottom,transparent,rgba(200,149,108,0.12),transparent);}
+.hero-inhalt{max-width:620px;position:relative;z-index:1;}
+.hero-h1{font-family:'Playfair Display',serif;font-size:clamp(52px,6vw,80px);font-weight:900;line-height:1.02;letter-spacing:-0.02em;margin-bottom:22px;}
+.hero-h1 .g{color:var(--g);}
+.hero-h1 .i{font-style:italic;}
+.hero-sub{font-size:17px;color:var(--gr2);line-height:1.75;font-weight:300;max-width:500px;margin-bottom:40px;}
+.hero-btns{display:flex;gap:14px;}
+.btn-p{background:var(--w);color:var(--s);border:none;padding:15px 36px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
+.btn-p:hover{background:var(--g);transform:translateY(-2px);}
+.btn-g{background:transparent;color:var(--w);border:1px solid rgba(255,255,255,0.18);padding:15px 36px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
+.btn-g:hover{border-color:var(--g);color:var(--g);}
 
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    padding: 20px 48px;
-    display: flex; align-items: center; justify-content: space-between;
-    background: rgba(17,16,16,0.9);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(200,149,108,0.1);
-  }
+/* TOP HANDWERKER */
+.top-hw{padding:70px 48px;}
+.sek-label{font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--g);margin-bottom:12px;}
+.sek-titel{font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,42px);font-weight:700;margin-bottom:48px;}
+.hw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.hw-karte{background:var(--s2);border:1px solid var(--rand);padding:28px;cursor:pointer;transition:all 0.25s;position:relative;overflow:hidden;}
+.hw-karte::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--g);transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
+.hw-karte:hover{background:var(--s3);transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,0.4);}
+.hw-karte:hover::before{transform:scaleX(1);}
+.hw-karte-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;}
+.hw-emoji{width:52px;height:52px;background:rgba(200,149,108,0.1);display:flex;align-items:center;justify-content:center;font-size:22px;}
+.pro-b{background:var(--s);color:var(--g);padding:3px 10px;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:1px solid var(--g);}
+.hw-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:4px;}
+.hw-meta{font-size:12px;color:var(--gr2);margin-bottom:12px;}
+.hw-desc{font-size:13px;color:var(--gr);line-height:1.65;margin-bottom:18px;}
+.hw-karte-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid var(--rand);}
+.hw-rating{font-size:13px;color:var(--gr2);}
+.hw-rating .s{color:var(--g);}
+.hw-preis{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;}
+.hw-preis span{font-size:13px;font-weight:400;color:var(--gr2);}
 
-  .logo {
-    display: flex; align-items: center; gap: 10px; cursor: pointer;
-    text-decoration: none;
-  }
-  .logo-icon {
-    width: 34px; height: 34px; background: var(--gold);
-    display: flex; align-items: center; justify-content: center; font-size: 16px;
-  }
-  .logo-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px; font-weight: 700; color: var(--weiss);
-  }
-  .logo-name span { color: var(--gold); }
+/* VORTEILE */
+.vorteile{padding:70px 48px;background:rgba(200,149,108,0.03);}
+.v-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:48px;}
+.v-box{padding:36px 28px;border:1px solid var(--rand);transition:all 0.3s;}
+.v-box:hover{background:rgba(200,149,108,0.04);}
+.v-num{font-family:'Playfair Display',serif;font-size:52px;font-weight:900;color:rgba(200,149,108,0.12);line-height:1;margin-bottom:20px;}
+.v-titel{font-size:16px;font-weight:700;margin-bottom:10px;line-height:1.3;}
+.v-text{font-size:13px;color:var(--gr);line-height:1.7;}
 
-  .nav-btn {
-    background: var(--gold); color: var(--schwarz);
-    border: none; padding: 10px 24px;
-    font-family: 'DM Sans', sans-serif; font-weight: 700;
-    font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
-    cursor: pointer; transition: all 0.2s; text-decoration: none;
-    display: inline-block;
-  }
-  .nav-btn:hover { background: var(--weiss); }
+/* CTA BAND */
+.cta-band{background:var(--g);padding:60px 48px;display:flex;align-items:center;justify-content:space-between;gap:32px;}
+.cta-band h2{font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,42px);font-weight:900;color:var(--s);max-width:500px;line-height:1.1;}
+.cta-band-btn{background:var(--s);color:var(--g);border:none;padding:16px 36px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;flex-shrink:0;}
+.cta-band-btn:hover{background:var(--w);color:var(--s);}
 
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: flex; align-items: center;
-    padding: 120px 48px 80px;
-    position: relative; overflow: hidden;
-  }
+/* ─── SUCHSEITE ─── */
+.suche-header{padding:48px 48px 32px;}
+.suche-header h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4vw,52px);font-weight:700;margin-bottom:8px;}
+.suche-header p{color:var(--gr2);font-size:16px;}
+.suche-body{display:grid;grid-template-columns:280px 1fr;gap:0;padding:0 48px 60px;}
 
-  .hero-bg {
-    position: absolute; inset: 0; pointer-events: none;
-  }
-  .hero-kreis-1 {
-    position: absolute; width: 600px; height: 600px;
-    top: -100px; right: -100px;
-    border: 1px solid rgba(200,149,108,0.08);
-    border-radius: 50%;
-  }
-  .hero-kreis-2 {
-    position: absolute; width: 400px; height: 400px;
-    top: 50px; right: 50px;
-    border: 1px solid rgba(200,149,108,0.06);
-    border-radius: 50%;
-  }
-  .hero-linie {
-    position: absolute; top: 0; bottom: 0;
-    left: 55%; width: 1px;
-    background: linear-gradient(to bottom, transparent, rgba(200,149,108,0.15), transparent);
-  }
+/* FILTER */
+.filter-panel{background:var(--s2);border:1px solid var(--rand);padding:28px;position:sticky;top:88px;height:fit-content;}
+.filter-kopf{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--rand);}
+.filter-kopf h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;}
+.filter-reset{font-size:11px;color:var(--g);cursor:pointer;font-weight:600;text-decoration:underline;background:none;border:none;}
+.filter-label{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gr);display:block;margin-bottom:8px;}
+.filter-gruppe{margin-bottom:22px;}
+.f-input{background:rgba(255,255,255,0.04);border:1px solid rgba(200,149,108,0.2);padding:10px 14px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--w);width:100%;transition:border-color 0.2s;}
+.f-input:focus{outline:none;border-color:var(--g);}
+.f-input::placeholder{color:#333;}
+.f-select{appearance:none;background:rgba(255,255,255,0.04);border:1px solid rgba(200,149,108,0.2);padding:10px 36px 10px 14px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--w);width:100%;cursor:pointer;}
+.f-select:focus{outline:none;border-color:var(--g);}
+.slider-wrap{position:relative;}
+.f-slider{-webkit-appearance:none;width:100%;height:3px;background:rgba(200,149,108,0.2);outline:none;}
+.f-slider::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;background:var(--g);cursor:pointer;border-radius:50%;}
+.slider-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--gr);margin-top:6px;}
+.chip-wrap{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;}
+.chip{padding:4px 10px;border:1px solid rgba(200,149,108,0.2);font-size:11px;font-weight:600;cursor:pointer;transition:all 0.15s;color:var(--gr2);background:transparent;}
+.chip:hover,.chip.an{background:var(--s);color:var(--g);border-color:var(--g);}
 
-  .hero-inhalt { max-width: 640px; position: relative; z-index: 1; }
+/* ERGEBNISSE */
+.ergebnisse{padding-left: 24px;display:flex;flex-direction:column;gap:16px;}
+.hw-zeile{background:var(--s2);border:1px solid var(--rand);padding:24px 28px;display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;cursor:pointer;transition:all 0.25s;}
+.hw-zeile:hover{border-color:var(--g);transform:translateX(4px);}
+.hw-zeile-emoji{width:60px;height:60px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;}
+.hw-zeile-mitte{}
+.hw-zeile-name{display:flex;align-items:center;gap:10px;margin-bottom:4px;}
+.hw-zeile-name h3{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;}
+.tag{display:inline-block;background:rgba(200,149,108,0.1);color:var(--g);padding:3px 10px;font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;}
+.belegt{background:rgba(185,28,28,0.15);color:#f87171;padding:2px 8px;font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}
+.hw-zeile-meta{font-size:12px;color:var(--gr2);margin-bottom:8px;}
+.hw-zeile-desc{font-size:13px;color:var(--gr);line-height:1.55;}
+.hw-zeile-rechts{text-align:right;flex-shrink:0;}
+.hw-zeile-preis{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;margin-bottom:4px;}
+.hw-zeile-preis span{font-size:13px;font-weight:400;color:var(--gr2);}
+.hw-zeile-rating{font-size:12px;color:var(--gr2);}
+.leer{background:var(--s2);border:1px solid var(--rand);padding:60px;text-align:center;}
+.leer-emoji{font-size:40px;margin-bottom:16px;}
+.leer h3{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:8px;}
+.leer p{color:var(--gr2);font-size:14px;}
 
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(200,149,108,0.1);
-    border: 1px solid rgba(200,149,108,0.3);
-    padding: 6px 16px; margin-bottom: 32px;
-  }
-  .hero-tag-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: puls 2s infinite; }
-  @keyframes puls { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
-  .hero-tag span { font-size: 12px; font-weight: 600; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; }
+/* ─── PROFIL ─── */
+.profil-body{max-width:940px;margin:0 auto;padding:48px;}
+.profil-zurueck{font-size:12px;font-weight:600;color:var(--gr2);letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;gap:8px;margin-bottom:36px;background:none;border:none;}
+.profil-zurueck:hover{color:var(--g);}
+.profil-grid{display:grid;grid-template-columns:1fr 320px;gap:36px;}
+.profil-links{}
+.profil-kopf{background:var(--s2);border:1px solid var(--rand);padding:36px;margin-bottom:20px;}
+.profil-kopf-top{display:flex;align-items:flex-start;gap:22px;margin-bottom:24px;}
+.profil-emoji{width:76px;height:76px;display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0;}
+.profil-info h1{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;margin-bottom:6px;}
+.profil-info-meta{font-size:14px;color:var(--gr2);margin-bottom:12px;}
+.profil-badges{display:flex;gap:12px;align-items:center;}
+.verfuegbar{color:#34d399;font-size:13px;font-weight:600;}
+.belegt-txt{color:#f87171;font-size:13px;font-weight:600;}
+.profil-desc{border-top:1px solid var(--rand);padding-top:22px;}
+.profil-desc h3{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;margin-bottom:12px;}
+.profil-desc p{font-size:14px;color:var(--gr);line-height:1.8;}
+.profil-leistungen{background:var(--s2);border:1px solid var(--rand);padding:36px;}
+.profil-leistungen h3{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;margin-bottom:20px;}
+.leistung-zeile{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--rand);font-size:14px;color:var(--gr);}
+.leistung-zeile:last-child{border-bottom:none;}
+.leistung-check{color:var(--g);font-weight:700;}
 
-  .hero-titel {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(48px, 6vw, 76px);
-    font-weight: 900; line-height: 1.02;
-    letter-spacing: -0.02em; margin-bottom: 24px;
-  }
-  .hero-titel .gold { color: var(--gold); }
-  .hero-titel .italic { font-style: italic; }
+/* KONTAKT KARTE */
+.kontakt-karte{background:var(--s2);border:1px solid var(--rand);padding:28px;position:sticky;top:88px;}
+.kontakt-preis{text-align:center;padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid var(--rand);}
+.kontakt-preis-num{font-family:'Playfair Display',serif;font-size:44px;font-weight:900;}
+.kontakt-preis-sub{font-size:13px;color:var(--gr2);}
+.k-label{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gr);display:block;margin-bottom:6px;}
+.k-input{background:rgba(255,255,255,0.04);border:1px solid rgba(200,149,108,0.2);padding:11px 14px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--w);width:100%;margin-bottom:14px;transition:border-color 0.2s;}
+.k-input:focus{outline:none;border-color:var(--g);}
+.k-input::placeholder{color:#333;}
+.k-textarea{background:rgba(255,255,255,0.04);border:1px solid rgba(200,149,108,0.2);padding:11px 14px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--w);width:100%;margin-bottom:14px;resize:vertical;min-height:80px;}
+.k-textarea:focus{outline:none;border-color:var(--g);}
+.k-textarea::placeholder{color:#333;}
+.k-btn{width:100%;background:var(--g);color:var(--s);border:none;padding:15px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
+.k-btn:hover{background:var(--w);transform:translateY(-1px);}
+.k-hinweis{font-size:11px;color:var(--gr);text-align:center;margin-top:12px;}
 
-  .hero-text {
-    font-size: 17px; color: var(--grau);
-    line-height: 1.75; font-weight: 300;
-    max-width: 520px; margin-bottom: 40px;
-  }
+/* ─── ANMELDEN ─── */
+.anmelden-body{max-width:640px;margin:0 auto;padding:64px 24px;}
+.anmelden-kopf{text-align:center;margin-bottom:48px;}
+.anmelden-kopf .sek-label{display:block;margin-bottom:12px;}
+.anmelden-kopf h1{font-family:'Playfair Display',serif;font-size:42px;font-weight:700;margin-bottom:14px;}
+.anmelden-kopf p{color:var(--gr2);font-size:16px;}
+.anmelden-box{background:var(--s2);border:1px solid var(--rand);padding:40px;position:relative;}
+.anmelden-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--g),var(--g2),var(--g));}
+.a-label{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gr);display:block;margin-bottom:6px;}
+.a-input{background:rgba(255,255,255,0.04);border:1px solid rgba(200,149,108,0.2);padding:13px 16px;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--w);width:100%;margin-bottom:18px;transition:border-color 0.2s;}
+.a-input:focus{outline:none;border-color:var(--g);}
+.a-input::placeholder{color:#333;}
+.a-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.a-btn{width:100%;background:var(--g);color:var(--s);border:none;padding:16px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:15px;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;margin-top:4px;}
+.a-btn:hover{background:var(--w);transform:translateY(-2px);}
+.a-hinweis{font-size:12px;color:var(--gr);text-align:center;margin-top:16px;}
+.paket-box{background:rgba(200,149,108,0.06);border:1px solid rgba(200,149,108,0.2);padding:18px;margin-bottom:18px;font-size:13px;color:var(--gr);line-height:1.7;}
 
-  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+/* TOAST */
+.toast{position:fixed;bottom:32px;right:32px;background:var(--s2);border:1px solid var(--g);color:var(--w);padding:18px 28px;font-size:14px;z-index:1000;display:none;animation:slideIn 0.3s ease;box-shadow:0 8px 32px rgba(0,0,0,0.4);}
+.toast.zeig{display:block;}
+@keyframes slideIn{from{transform:translateX(100px);opacity:0;}to{transform:translateX(0);opacity:1;}}
 
-  .btn-haupt {
-    background: var(--weiss); color: var(--schwarz);
-    border: none; padding: 16px 36px;
-    font-family: 'DM Sans', sans-serif; font-weight: 700;
-    font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase;
-    cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block;
-  }
-  .btn-haupt:hover { background: var(--gold); color: var(--schwarz); transform: translateY(-2px); }
+/* FOOTER */
+footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-items:center;justify-content:space-between;}
+.footer-logo{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;}
+.footer-logo span{color:var(--g);}
+.footer-text{font-size:12px;color:var(--gr);}
+.footer-links{display:flex;gap:24px;}
+.footer-link{font-size:12px;color:var(--gr);text-decoration:none;cursor:pointer;}
+.footer-link:hover{color:var(--g);}
 
-  .btn-ghost {
-    background: transparent; color: var(--weiss);
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 16px 36px;
-    font-family: 'DM Sans', sans-serif; font-weight: 600;
-    font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase;
-    cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block;
-  }
-  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
-
-  /* ── ZAHLEN ── */
-  .zahlen {
-    padding: 60px 48px;
-    border-top: 1px solid rgba(200,149,108,0.1);
-    border-bottom: 1px solid rgba(200,149,108,0.1);
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
-  }
-  .zahl-box {
-    text-align: center; padding: 20px;
-    border-right: 1px solid rgba(200,149,108,0.1);
-  }
-  .zahl-box:last-child { border-right: none; }
-  .zahl-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 48px; font-weight: 900; color: var(--gold); line-height: 1;
-    margin-bottom: 6px;
-  }
-  .zahl-text {
-    font-size: 11px; font-weight: 600; color: var(--grau);
-    letter-spacing: 0.1em; text-transform: uppercase;
-  }
-
-  /* ── VORTEILE ── */
-  .vorteile { padding: 100px 48px; }
-
-  .abschnitt-label {
-    font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
-  }
-
-  .abschnitt-titel {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(32px, 4vw, 48px); font-weight: 700;
-    line-height: 1.15; margin-bottom: 60px;
-  }
-
-  .vorteile-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
-  }
-
-  .vorteil {
-    padding: 36px 32px;
-    border: 1px solid rgba(200,149,108,0.1);
-    transition: all 0.3s; position: relative; overflow: hidden;
-  }
-  .vorteil::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0;
-    height: 2px; background: var(--gold);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.3s;
-  }
-  .vorteil:hover { background: rgba(200,149,108,0.05); }
-  .vorteil:hover::before { transform: scaleX(1); }
-
-  .vorteil-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 48px; font-weight: 900; color: rgba(200,149,108,0.15);
-    line-height: 1; margin-bottom: 20px;
-  }
-  .vorteil-titel {
-    font-size: 17px; font-weight: 700; color: var(--weiss);
-    margin-bottom: 10px; line-height: 1.3;
-  }
-  .vorteil-text { font-size: 14px; color: var(--grau); line-height: 1.7; }
-
-
-  /* ── ANMELDUNG ── */
-  .anmeldung { padding: 100px 48px; }
-
-  .anmeldung-box {
-    max-width: 600px; margin: 0 auto;
-    border: 1px solid rgba(200,149,108,0.2);
-    padding: 56px 48px;
-    position: relative; overflow: hidden;
-  }
-  .anmeldung-box::before {
-    content: ''; position: absolute;
-    top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, var(--gold), var(--gold-hell), var(--gold));
-  }
-
-  .anmeldung-titel {
-    font-family: 'Playfair Display', serif;
-    font-size: 36px; font-weight: 700; text-align: center;
-    margin-bottom: 10px;
-  }
-  .anmeldung-sub { font-size: 15px; color: var(--grau); text-align: center; margin-bottom: 36px; }
-
-  .form-zeile { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
-
-  .eingabe-gruppe { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
-  .eingabe-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--grau);
-  }
-  .eingabe {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(200,149,108,0.2);
-    padding: 13px 16px;
-    font-family: 'DM Sans', sans-serif; font-size: 15px;
-    color: var(--weiss); width: 100%;
-    transition: border-color 0.2s;
-  }
-  .eingabe:focus { outline: none; border-color: var(--gold); }
-  .eingabe::placeholder { color: #444; }
-
-  select.eingabe { cursor: pointer; appearance: none; }
-
-  .form-btn {
-    width: 100%; background: var(--gold); color: var(--schwarz);
-    border: none; padding: 16px;
-    font-family: 'DM Sans', sans-serif; font-weight: 700;
-    font-size: 15px; letter-spacing: 0.08em; text-transform: uppercase;
-    cursor: pointer; transition: all 0.2s; margin-top: 8px;
-  }
-  .form-btn:hover { background: var(--weiss); transform: translateY(-2px); }
-
-  .form-hinweis { font-size: 12px; color: #444; text-align: center; margin-top: 14px; }
-
-  /* ── FOOTER ── */
-  footer {
-    padding: 40px 48px;
-    border-top: 1px solid rgba(200,149,108,0.1);
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .footer-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px; font-weight: 700; color: var(--weiss);
-  }
-  .footer-logo span { color: var(--gold); }
-  .footer-text { font-size: 12px; color: #444; }
-  .footer-kontakt { font-size: 13px; color: var(--grau); text-align: right; }
-  .footer-kontakt a { color: var(--gold); text-decoration: none; }
-
-  /* ── SUCCESS ── */
-  .success-overlay {
-    display: none; position: fixed; inset: 0; z-index: 200;
-    background: rgba(17,16,16,0.95);
-    align-items: center; justify-content: center;
-    flex-direction: column; text-align: center; gap: 20px;
-  }
-  .success-overlay.aktiv { display: flex; }
-  .success-check {
-    width: 80px; height: 80px; background: var(--gold);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-size: 36px;
-  }
-  .success-titel {
-    font-family: 'Playfair Display', serif;
-    font-size: 40px; font-weight: 700;
-  }
-  .success-text { font-size: 16px; color: var(--grau); max-width: 400px; line-height: 1.7; }
-  .success-btn {
-    background: var(--gold); color: var(--schwarz);
-    border: none; padding: 14px 32px;
-    font-family: 'DM Sans', sans-serif; font-weight: 700;
-    font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase;
-    cursor: pointer; margin-top: 10px;
-  }
-
-  @media (max-width: 768px) {
-    nav { padding: 16px 24px; }
-    .hero { padding: 100px 24px 60px; }
-    .zahlen { grid-template-columns: repeat(2, 1fr); padding: 40px 24px; }
-    .vorteile, .anmeldung { padding: 60px 24px; }
-    .vorteile-grid { grid-template-columns: 1fr; }
-    .form-zeile { grid-template-columns: 1fr; }
-    .anmeldung-box { padding: 36px 24px; }
-    footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
-    .footer-kontakt { text-align: center; }
-  }
+@media(max-width:768px){
+  nav{padding:16px 20px;}
+  .nav-links{display:none;}
+  .hero,.top-hw,.vorteile,.suche-header{padding-left:20px;padding-right:20px;}
+  .hero-h1{font-size:42px;}
+  .hw-grid,.v-grid{grid-template-columns:1fr;}
+  .suche-body{grid-template-columns:1fr;padding:0 20px 40px;}
+  .filter-panel{position:static;}
+  .ergebnisse{padding-left:0;margin-top:16px;}
+  .profil-body{padding:24px 20px;}
+  .profil-grid{grid-template-columns:1fr;}
+  .cta-band{flex-direction:column;padding:40px 20px;}
+  footer{flex-direction:column;gap:16px;text-align:center;padding:28px 20px;}
+}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="logo">
-    <div class="logo-icon">⚒</div>
-    <div class="logo-name">Mi<span>-Werk</span></div>
+  <a class="logo" onclick="zeigSeite('start')">
+    <div class="logo-box">⚒</div>
+    <div class="logo-txt">Mi<span>-Werk</span></div>
   </a>
-  <a href="#anmeldung" class="nav-btn">Jetzt eintragen</a>
+  <div class="nav-links">
+    <button class="nav-link" onclick="zeigSeite('suche')">Handwerker finden</button>
+    <button class="nav-link" onclick="zeigSeite('anmelden')">Für Handwerker</button>
+    <a href="index.html" class="nav-link">Warteliste</a>
+  </div>
+  <button class="nav-btn" onclick="zeigSeite('anmelden')">Jetzt anmelden</button>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg">
-    <div class="hero-kreis-1"></div>
-    <div class="hero-kreis-2"></div>
-    <div class="hero-linie"></div>
-  </div>
-  <div class="hero-inhalt">
-    <div class="hero-tag">
-      <div class="hero-tag-dot"></div>
-      <span>Jetzt in NRW & Koblenz starten</span>
+<!-- ─── STARTSEITE ─── -->
+<div id="start" class="page aktiv">
+  <section class="hero">
+    <div class="hero-deko">
+      <div class="hero-k1"></div>
+      <div class="hero-k2"></div>
+      <div class="hero-linie"></div>
     </div>
-    <h1 class="hero-titel">
-      Mehr Aufträge.<br>
-      <span class="gold italic">Weniger</span><br>
-      Stress.
-    </h1>
-    <p class="hero-text">
-      Mi-Werk verbindet Handwerker mit Kunden in ihrer Region — fair, lokal und ohne Risiko. Kein Bezahlen pro Lead. Eine faire Flatrate.
-    </p>
-    <div class="hero-btns">
-      <a href="#anmeldung" class="btn-haupt">Kostenlos eintragen</a>
-      <a href="#vorteile" class="btn-ghost">Mehr erfahren</a>
+    <div class="hero-inhalt">
+      <h1 class="hero-h1">Mehr Aufträge.<br><span class="g i">Weniger</span><br>Stress.</h1>
+      <p class="hero-sub">Mi-Werk verbindet Handwerker mit Kunden in ihrer Region — fair, lokal und ohne Risiko. Kein Bezahlen pro Lead.</p>
+      <div class="hero-btns">
+        <button class="btn-p" onclick="zeigSeite('suche')">Handwerker finden</button>
+        <button class="btn-g" onclick="zeigSeite('anmelden')">Als Handwerker eintragen</button>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-    <div class="zahl-text">Handwerker</div>
+  <section class="top-hw">
+    <div class="sek-label">Empfohlen</div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+      <h2 class="sek-titel" style="margin-bottom:0">Top-Handwerker</h2>
+      <button onclick="zeigSeite('suche')" style="font-size:13px;font-weight:600;color:var(--g);cursor:pointer;background:none;border:none;letter-spacing:0.06em;text-transform:uppercase;text-decoration:underline;">Alle anzeigen →</button>
+    </div>
+    <div style="margin-top:32px;" class="hw-grid" id="top-grid"></div>
+  </section>
+
+  <section class="vorteile">
+    <div class="sek-label">Warum Mi-Werk</div>
+    <h2 class="sek-titel">Anders als alle anderen.</h2>
+    <div class="v-grid">
+      <div class="v-box"><div class="v-num">01</div><div class="v-titel">Faire Flatrate — kein Bezahlen pro Lead</div><div class="v-text">Du zahlst einen festen Monatsbeitrag. Keine bösen Überraschungen am Monatsende.</div></div>
+      <div class="v-box"><div class="v-num">02</div><div class="v-titel">Nur Kunden aus deiner Region</div><div class="v-text">Du wirst gezielt Kunden in deiner Stadt angezeigt — keine Konkurrenz aus dem ganzen Bundesgebiet.</div></div>
+      <div class="v-box"><div class="v-num">03</div><div class="v-titel">In 5 Minuten eingetragen</div><div class="v-text">Profil erstellen, Gewerk & Preis angeben — fertig. Kunden finden dich direkt über die Suche.</div></div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <h2>Bist du Handwerker?<br>Werde jetzt sichtbar.</h2>
+    <button class="cta-band-btn" onclick="zeigSeite('anmelden')">Kostenlos eintragen</button>
   </div>
-  <div class="zahl-box">
-    <div class="zahl-num">NRW</div>
-    <div class="zahl-text">Startregion</div>
-  </div>
-  <div class="zahl-box">
-    <div class="zahl-num">0€</div>
-    <div class="zahl-text">Pro Lead</div>
-  </div>
-  <div class="zahl-box">
-    <div class="zahl-num">15€</div>
-    <div class="zahl-text">Einstiegspreis</div>
-  </div>
+
+  <footer>
+    <div class="footer-logo">Mi<span>-Werk</span></div>
+    <div class="footer-text">© 2025 Mi-Werk · Bochum</div>
+    <div class="footer-links">
+      <span class="footer-link">Impressum</span>
+      <span class="footer-link">Datenschutz</span>
+      <span class="footer-link">AGB</span>
+    </div>
+  </footer>
 </div>
 
-<!-- VORTEILE -->
-<section class="vorteile" id="vorteile">
-  <div class="abschnitt-label">Warum Mi-Werk</div>
-  <h2 class="abschnitt-titel">Anders als alle anderen.</h2>
-  <div class="vorteile-grid">
-    <div class="vorteil">
-      <div class="vorteil-num">01</div>
-      <div class="vorteil-titel">Faire Flatrate — kein Bezahlen pro Lead</div>
-      <div class="vorteil-text">Anders als MyHammer zahlst du einen festen Monatsbeitrag. Keine bösen Überraschungen am Monatsende.</div>
-    </div>
-    <div class="vorteil">
-      <div class="vorteil-num">02</div>
-      <div class="vorteil-titel">Nur Kunden aus deiner Region</div>
-      <div class="vorteil-text">Du wirst gezielt Kunden in deiner Stadt angezeigt — keine Konkurrenz aus dem ganzen Bundesgebiet.</div>
-    </div>
-    <div class="vorteil">
-      <div class="vorteil-num">03</div>
-      <div class="vorteil-titel">In 5 Minuten eingetragen</div>
-      <div class="vorteil-text">Profil erstellen, Gewerk & Preis angeben — fertig. Kunden finden dich direkt über die Suche.</div>
-    </div>
+<!-- ─── SUCHSEITE ─── -->
+<div id="suche" class="page">
+  <div class="suche-header">
+    <h1>Handwerker finden</h1>
+    <p id="anz-text">Lade Handwerker...</p>
   </div>
-</section>
-
-
-<!-- ANMELDUNG -->
-<section class="anmeldung" id="anmeldung">
-  <div class="anmeldung-box">
-    <div class="anmeldung-titel">Jetzt eintragen</div>
-    <p class="anmeldung-sub">Trag dich auf die Warteliste ein — wir melden uns bei dir.</p>
-
-    <div class="form-zeile">
-      <div class="eingabe-gruppe">
-        <label class="eingabe-label">Vorname</label>
-        <input class="eingabe" type="text" placeholder="Max" id="vorname">
+  <div class="suche-body">
+    <div class="filter-panel">
+      <div class="filter-kopf">
+        <h3>Filter</h3>
+        <button class="filter-reset" onclick="filterReset()">Zurücksetzen</button>
       </div>
-      <div class="eingabe-gruppe">
-        <label class="eingabe-label">Nachname</label>
-        <input class="eingabe" type="text" placeholder="Mustermann" id="nachname">
+      <div class="filter-gruppe">
+        <label class="filter-label">Suche</label>
+        <input class="f-input" id="f-suche" placeholder="Name, Beschreibung…" oninput="filtern()">
       </div>
-    </div>
-
-    <div class="eingabe-gruppe">
-      <label class="eingabe-label">Telefonnummer</label>
-      <input class="eingabe" type="tel" placeholder="0157 ..." id="telefon">
-    </div>
-
-    <div class="eingabe-gruppe">
-      <label class="eingabe-label">E-Mail</label>
-      <input class="eingabe" type="email" placeholder="max@handwerk.de" id="email">
-    </div>
-
-    <div class="form-zeile">
-      <div class="eingabe-gruppe">
-        <label class="eingabe-label">Gewerk</label>
-        <select class="eingabe" id="gewerk">
-          <option value="">Bitte wählen...</option>
+      <div class="filter-gruppe">
+        <label class="filter-label">Stadt oder Region</label>
+        <input class="f-input" id="f-ort" placeholder="z.B. Bochum, NRW…" oninput="filtern()">
+      </div>
+      <div class="filter-gruppe">
+        <label class="filter-label">Gewerk</label>
+        <select class="f-select" id="f-gewerk" onchange="filtern();updateChips()">
+          <option value="">Alle Gewerke</option>
           <option>Elektriker</option>
           <option>Maler</option>
           <option>Klempner</option>
           <option>Tischler</option>
           <option>Fliesenleger</option>
           <option>Dachdecker</option>
-          <option>Sonstiges</option>
         </select>
       </div>
-      <div class="eingabe-gruppe">
-        <label class="eingabe-label">Stadt / PLZ</label>
-        <input class="eingabe" type="text" placeholder="Bochum, 44801" id="stadt">
+      <div class="filter-gruppe" id="chip-gruppe" style="display:none">
+        <label class="filter-label">Leistung</label>
+        <div class="chip-wrap" id="chip-wrap"></div>
+        <input class="f-input" id="f-leistung" placeholder="Oder freie Suche…" oninput="filtern()" style="margin-top:8px">
+      </div>
+      <div class="filter-gruppe">
+        <label class="filter-label">Max. Preis: <span id="preis-val" style="color:var(--g)">200€/h</span></label>
+        <input class="f-slider" type="range" min="20" max="200" value="200" id="f-preis" oninput="document.getElementById('preis-val').textContent=this.value+'€/h';filtern()">
+        <div class="slider-labels"><span>20€</span><span>200€</span></div>
       </div>
     </div>
-
-    <button class="form-btn" onclick="absenden()">Auf Warteliste eintragen →</button>
-    <p class="form-hinweis">Kostenlos & unverbindlich · Kein Spam · Jederzeit abmeldbar</p>
+    <div class="ergebnisse" id="ergebnisse"></div>
   </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-logo">Mi<span>-Werk</span></div>
-  <div class="footer-text">© 2025 Mi-Werk · Bochum · Alle Rechte vorbehalten</div>
-  <div class="footer-kontakt">
-    <a href="tel:015780609887">0157 80609887</a><br>
-    <a href="mailto:bm.miwerk.de@gmail.com">bm.miwerk.de@gmail.com</a>
-  </div>
-</footer>
-
-<!-- SUCCESS -->
-<div class="success-overlay" id="success">
-  <div class="success-check">✓</div>
-  <div class="success-titel">Danke!</div>
-  <p class="success-text">Du stehst auf der Warteliste. Wir melden uns in den nächsten Tagen bei dir.</p>
-  <button class="success-btn" onclick="document.getElementById('success').classList.remove('aktiv')">Schließen</button>
 </div>
 
+<!-- ─── PROFIL ─── -->
+<div id="profil" class="page">
+  <div class="profil-body">
+    <button class="profil-zurueck" onclick="zeigSeite('suche')">← Zurück zur Suche</button>
+    <div class="profil-grid">
+      <div class="profil-links">
+        <div class="profil-kopf">
+          <div class="profil-kopf-top">
+            <div class="profil-emoji" id="p-emoji"></div>
+            <div class="profil-info">
+              <h1 id="p-name"></h1>
+              <div class="profil-info-meta" id="p-meta"></div>
+              <div class="profil-badges">
+                <div id="p-verf"></div>
+                <div id="p-pro"></div>
+              </div>
+            </div>
+          </div>
+          <div class="profil-desc">
+            <h3>Über mich</h3>
+            <p id="p-desc"></p>
+          </div>
+        </div>
+        <div class="profil-leistungen">
+          <h3>Leistungen</h3>
+          <div class="leistung-zeile"><span class="leistung-check">✓</span> Erstberatung (kostenlos)</div>
+          <div class="leistung-zeile"><span class="leistung-check">✓</span> Angebotserstellung</div>
+          <div class="leistung-zeile"><span class="leistung-check">✓</span> Ausführung & Umsetzung</div>
+          <div class="leistung-zeile"><span class="leistung-check">✓</span> Nachbetreuung</div>
+        </div>
+      </div>
+      <div>
+        <div class="kontakt-karte">
+          <div class="kontakt-preis">
+            <div class="kontakt-preis-num" id="p-preis"></div>
+            <div class="kontakt-preis-sub">pro Stunde</div>
+          </div>
+          <label class="k-label">Dein Name</label>
+          <input class="k-input" placeholder="Max Mustermann" id="k-name">
+          <label class="k-label">E-Mail</label>
+          <input class="k-input" placeholder="max@beispiel.de" id="k-email">
+          <label class="k-label">Nachricht</label>
+          <textarea class="k-textarea" placeholder="Beschreibe kurz dein Projekt…"></textarea>
+          <button class="k-btn" onclick="anfrageSenden()">Anfrage senden</button>
+          <div class="k-hinweis">Kostenlos und unverbindlich</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── ANMELDEN ─── -->
+<div id="anmelden" class="page">
+  <div class="anmelden-body">
+    <div class="anmelden-kopf">
+      <span class="sek-label">Für Handwerker</span>
+      <h1>Profil erstellen</h1>
+      <p>Werde sichtbar für tausende Kunden in deiner Region.</p>
+    </div>
+    <div class="anmelden-box">
+      <div class="a-row">
+        <div><label class="a-label">Vorname</label><input class="a-input" placeholder="Max"></div>
+        <div><label class="a-label">Nachname</label><input class="a-input" placeholder="Mustermann"></div>
+      </div>
+      <label class="a-label">E-Mail-Adresse</label>
+      <input class="a-input" placeholder="max@handwerk.de" type="email">
+      <label class="a-label">Telefonnummer</label>
+      <input class="a-input" placeholder="+49 …" type="tel">
+      <div class="a-row">
+        <div><label class="a-label">Gewerk</label><input class="a-input" placeholder="z.B. Elektriker, Maler…"></div>
+        <div><label class="a-label">Stadt / PLZ</label><input class="a-input" placeholder="Bochum, 44801"></div>
+      </div>
+      <label class="a-label">Stundensatz (€)</label>
+      <input class="a-input" placeholder="z.B. 65" type="number">
+      <label class="a-label">Kurzbeschreibung</label>
+      <input class="a-input" placeholder="Was machst du? Was zeichnet dich aus?">
+      <div class="paket-box"><strong>Paket:</strong> Nach der Registrierung kannst du zwischen Basic (19€/Monat) und Pro (39€/Monat) wählen. Die ersten 14 Tage sind kostenlos.</div>
+      <button class="a-btn" onclick="anmeldeErfolg()">Kostenlos registrieren</button>
+      <div class="a-hinweis">Keine Kreditkarte nötig · Jederzeit kündbar</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
 <script>
-  function absenden() {
-    const vorname = document.getElementById('vorname').value;
-    const telefon = document.getElementById('telefon').value;
-    const gewerk = document.getElementById('gewerk').value;
+const HANDWERKER = [
+  {id:1,name:"Klaus Bauer",gewerk:"Elektriker",ort:"München",umkreis:"Bayern",preis:75,bew:4.9,bew_anz:84,desc:"15 Jahre Erfahrung in Elektroinstallationen, Smart Home & Solaranlagen. Photovoltaik und Neuinstallation.",verf:true,paket:"Pro",emoji:"⚡",farbe:"#F59E0B"},
+  {id:2,name:"Sandra Meier",gewerk:"Maler",ort:"Hamburg",umkreis:"Norddeutschland",preis:45,bew:4.7,bew_anz:61,desc:"Spezialisiert auf Innenräume, Tapezieren und Fassadenarbeiten. Lackierung und Restaurierung.",verf:true,paket:"Basic",emoji:"🖌️",farbe:"#EC4899"},
+  {id:3,name:"Tobias Wolf",gewerk:"Klempner",ort:"Berlin",umkreis:"Berlin & Brandenburg",preis:85,bew:4.8,bew_anz:113,desc:"Rohrleitungsbau, Heizung und Sanitär seit 2008. Wasserschaden und Wartung.",verf:false,paket:"Pro",emoji:"🔧",farbe:"#3B82F6"},
+  {id:4,name:"Maria Fischer",gewerk:"Tischler",ort:"Stuttgart",umkreis:"Baden-Württemberg",preis:65,bew:5.0,bew_anz:47,desc:"Maßmöbel, Treppen und Restaurierung. Einbauschränke und Küche.",verf:true,paket:"Pro",emoji:"🪵",farbe:"#10B981"},
+  {id:5,name:"Reza Karimi",gewerk:"Fliesenleger",ort:"Köln",umkreis:"NRW",preis:55,bew:4.6,bew_anz:38,desc:"Badezimmer und Küche, Terrasse und Naturstein. Großformat und Außenbereich.",verf:true,paket:"Basic",emoji:"🟦",farbe:"#8B5CF6"},
+  {id:6,name:"Petra Schulz",gewerk:"Dachdecker",ort:"Frankfurt",umkreis:"Hessen",preis:90,bew:4.9,bew_anz:72,desc:"Dachsanierung, Dämmung und Klempnerarbeiten. Flachdach und Dachfenster.",verf:true,paket:"Pro",emoji:"🏠",farbe:"#F97316"},
+];
 
-    if (!vorname || !telefon || !gewerk) {
-      alert('Bitte fülle alle Pflichtfelder aus.');
-      return;
-    }
-    document.getElementById('success').classList.add('aktiv');
+const CHIPS = {
+  Elektriker:["Smart Home","Solar","Reparatur","Neuinstallation","Beleuchtung"],
+  Maler:["Innenräume","Fassade","Tapezieren","Lackierung","Restaurierung"],
+  Klempner:["Badezimmer","Heizung","Rohre","Sanitär","Wasserschaden"],
+  Tischler:["Maßmöbel","Türen & Fenster","Treppen","Küche","Einbauschränke"],
+  Fliesenleger:["Badezimmer","Küche","Terrasse","Naturstein","Großformat"],
+  Dachdecker:["Dachsanierung","Dämmung","Flachdach","Dachfenster","Neueindeckung"],
+};
+
+let aktivChip = "";
+let aktivHW = null;
+
+function zeigSeite(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('aktiv'));
+  document.getElementById(id).classList.add('aktiv');
+  window.scrollTo(0,0);
+  if(id==='suche')filtern();
+  if(id==='start')renderTop();
+}
+
+function renderTop(){
+  const grid = document.getElementById('top-grid');
+  const pros = HANDWERKER.filter(h=>h.paket==='Pro').slice(0,3);
+  grid.innerHTML = pros.map(h=>`
+    <div class="hw-karte" onclick="zeigProfil(${h.id})">
+      <div class="hw-karte-top">
+        <div class="hw-emoji" style="background:${h.farbe}22">${h.emoji}</div>
+        ${h.paket==='Pro'?'<div class="pro-b">PRO</div>':''}
+      </div>
+      <div class="hw-name">${h.name}</div>
+      <div class="hw-meta">${h.gewerk} · ${h.ort}</div>
+      <div class="hw-desc">${h.desc}</div>
+      <div class="hw-karte-bottom">
+        <div class="hw-rating"><span class="s">★</span> ${h.bew} (${h.bew_anz})</div>
+        <div class="hw-preis">ab ${h.preis}€<span>/h</span></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filtern(){
+  const suche = document.getElementById('f-suche').value.toLowerCase();
+  const ort = document.getElementById('f-ort').value.toLowerCase();
+  const gewerk = document.getElementById('f-gewerk').value;
+  const preis = parseInt(document.getElementById('f-preis').value);
+  const leistung = document.getElementById('f-leistung')?.value.toLowerCase()||'';
+
+  const gef = HANDWERKER.filter(h=>{
+    const mGewerk = !gewerk || h.gewerk===gewerk;
+    const mOrt = !ort || h.ort.toLowerCase().includes(ort) || h.umkreis.toLowerCase().includes(ort);
+    const mPreis = h.preis<=preis;
+    const mSuche = !suche || h.name.toLowerCase().includes(suche) || h.gewerk.toLowerCase().includes(suche) || h.desc.toLowerCase().includes(suche);
+    const mChip = !aktivChip || h.desc.toLowerCase().includes(aktivChip.toLowerCase());
+    const mLeistung = !leistung || h.desc.toLowerCase().includes(leistung);
+    return mGewerk&&mOrt&&mPreis&&mSuche&&mChip&&mLeistung;
+  });
+
+  document.getElementById('anz-text').textContent = `${gef.length} Handwerker gefunden`;
+
+  const cont = document.getElementById('ergebnisse');
+  if(gef.length===0){
+    cont.innerHTML=`<div class="leer"><div class="leer-emoji">🔍</div><h3>Keine Treffer</h3><p>Versuche andere Filtereinstellungen.</p></div>`;
+    return;
   }
-</script>
+  cont.innerHTML = gef.map(h=>`
+    <div class="hw-zeile" onclick="zeigProfil(${h.id})">
+      <div class="hw-zeile-emoji" style="background:${h.farbe}22">${h.emoji}</div>
+      <div class="hw-zeile-mitte">
+        <div class="hw-zeile-name">
+          <h3>${h.name}</h3>
+          ${h.paket==='Pro'?'<div class="pro-b">PRO</div>':''}
+          ${!h.verf?'<div class="belegt">BELEGT</div>':''}
+        </div>
+        <div class="hw-zeile-meta"><span class="tag">${h.gewerk}</span> &nbsp;📍 ${h.ort} · ${h.umkreis}</div>
+        <div class="hw-zeile-desc">${h.desc}</div>
+      </div>
+      <div class="hw-zeile-rechts">
+        <div class="hw-zeile-preis">${h.preis}€<span>/h</span></div>
+        <div class="hw-zeile-rating"><span style="color:var(--g)">★</span> ${h.bew} <span style="color:var(--gr)">(${h.bew_anz})</span></div>
+      </div>
+    </div>
+  `).join('');
+}
 
+function updateChips(){
+  const gewerk = document.getElementById('f-gewerk').value;
+  const gr = document.getElementById('chip-gruppe');
+  const wrap = document.getElementById('chip-wrap');
+  aktivChip = "";
+  if(!gewerk||!CHIPS[gewerk]){gr.style.display='none';return;}
+  gr.style.display='block';
+  wrap.innerHTML = CHIPS[gewerk].map(c=>`<div class="chip" onclick="toggleChip(this,'${c}')">${c}</div>`).join('');
+}
+
+function toggleChip(el, val){
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('an'));
+  if(aktivChip===val){aktivChip="";}
+  else{aktivChip=val;el.classList.add('an');}
+  filtern();
+}
+
+function filterReset(){
+  document.getElementById('f-suche').value='';
+  document.getElementById('f-ort').value='';
+  document.getElementById('f-gewerk').value='';
+  document.getElementById('f-preis').value=200;
+  document.getElementById('preis-val').textContent='200€/h';
+  if(document.getElementById('f-leistung'))document.getElementById('f-leistung').value='';
+  aktivChip='';
+  document.getElementById('chip-gruppe').style.display='none';
+  filtern();
+}
+
+function zeigProfil(id){
+  aktivHW = HANDWERKER.find(h=>h.id===id);
+  if(!aktivHW)return;
+  document.getElementById('p-emoji').style.cssText=`background:${aktivHW.farbe}22;width:76px;height:76px;display:flex;align-items:center;justify-content:center;font-size:32px;`;
+  document.getElementById('p-emoji').textContent=aktivHW.emoji;
+  document.getElementById('p-name').textContent=aktivHW.name;
+  document.getElementById('p-meta').textContent=`${aktivHW.gewerk} · 📍 ${aktivHW.ort} · ${aktivHW.umkreis} · ★ ${aktivHW.bew} (${aktivHW.bew_anz} Bewertungen)`;
+  document.getElementById('p-verf').innerHTML=aktivHW.verf?'<span class="verfuegbar">✓ Verfügbar</span>':'<span class="belegt-txt">✗ Derzeit belegt</span>';
+  document.getElementById('p-pro').innerHTML=aktivHW.paket==='Pro'?'<div class="pro-b">PRO</div>':'';
+  document.getElementById('p-desc').textContent=aktivHW.desc+' Ich bin seit über einem Jahrzehnt in meinem Handwerk tätig und lege größten Wert auf Qualität und Zuverlässigkeit.';
+  document.getElementById('p-preis').textContent=aktivHW.preis+'€';
+  zeigSeite('profil');
+}
+
+function anfrageSenden(){
+  const name=document.getElementById('k-name').value;
+  const email=document.getElementById('k-email').value;
+  if(!name||!email){zeigToast('Bitte Name und E-Mail ausfüllen.');return;}
+  zeigToast(`✓ Anfrage gesendet! ${aktivHW?.name} meldet sich bald bei dir.`);
+}
+
+function anmeldeErfolg(){
+  zeigToast('✓ Erfolgreich registriert! Wir melden uns bald bei dir.');
+}
+
+function zeigToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('zeig');
+  setTimeout(()=>t.classList.remove('zeig'),3500);
+}
+
+renderTop();
+filtern();
+</script>
 </body>
 </html>
