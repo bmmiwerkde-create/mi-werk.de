@@ -415,6 +415,10 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
           <textarea class="k-textarea" placeholder="Beschreibe kurz dein Projekt…"></textarea>
           <button class="k-btn" onclick="anfrageSenden()">Anfrage senden</button>
           <div class="k-hinweis">Kostenlos und unverbindlich</div>
+          <div style="margin-top:14px;border-top:1px solid var(--rand);padding-top:14px;">
+            <button class="k-btn" style="background:transparent;border:1px solid var(--g);color:var(--g);" onclick="terminBuchen()">📅 Termin buchen</button>
+            <div class="k-hinweis" style="margin-top:8px;">Direkt in den Kalender des Handwerkers</div>
+          </div>
         </div>
       </div>
     </div>
@@ -447,7 +451,6 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
       <input class="a-input" name="stundensatz" placeholder="z.B. 65" type="number">
       <label class="a-label">Kurzbeschreibung</label>
       <input class="a-input" name="beschreibung" placeholder="Was machst du? Was zeichnet dich aus?">
-      <div class="paket-box"><strong>Paket:</strong> Nach der Registrierung kannst du zwischen Basic (19€/Monat) und Pro (39€/Monat) wählen. Die ersten 14 Tage sind kostenlos.</div>
       <button class="a-btn" type="submit">Kostenlos registrieren</button>
       <div class="a-hinweis">Keine Kreditkarte nötig · Jederzeit kündbar</div>
       </form>
@@ -565,6 +568,14 @@ function zeigProfil(id){
   document.getElementById('p-desc').textContent=aktivHW.desc+' Ich bin seit über einem Jahrzehnt in meinem Handwerk tätig und lege größten Wert auf Qualität und Zuverlässigkeit.';
   document.getElementById('p-preis').textContent=aktivHW.preis+'€';
   zeigSeite('profil');
+}
+
+function terminBuchen(){
+  if(aktivHW && aktivHW.calendly){
+    window.open(aktivHW.calendly, '_blank');
+  } else {
+    zeigToast('Dieser Handwerker hat noch keinen Kalender hinterlegt.');
+  }
 }
 
 function anfrageSenden(){
