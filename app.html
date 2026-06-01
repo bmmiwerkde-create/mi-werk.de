@@ -324,9 +324,9 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
     <div class="footer-logo">Mi<span>-Werk</span></div>
     <div class="footer-text">© 2025 Mi-Werk · Bochum</div>
     <div class="footer-links">
-      <span class="footer-link">Impressum</span>
-      <span class="footer-link">Datenschutz</span>
-      <span class="footer-link">AGB</span>
+      <span class="footer-link" onclick="zeigSeite('impressum')">Impressum</span>
+      <span class="footer-link" onclick="zeigSeite('datenschutz')">Datenschutz</span>
+      <span class="footer-link" onclick="zeigSeite('agb')">AGB</span>
     </div>
   </footer>
 </div>
@@ -507,6 +507,65 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
 </div>
 
 <div class="toast" id="toast"></div>
+
+<!-- ─── IMPRESSUM ─── -->
+<div id="impressum" class="page">
+  <div style="max-width:800px;margin:0 auto;padding:64px 24px;">
+    <button onclick="history.back()" style="font-size:12px;font-weight:600;color:var(--gr2);letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;background:none;border:none;margin-bottom:32px;display:block;">← Zurück</button>
+    <h1 style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;margin-bottom:32px;">Impressum</h1>
+    <div style="background:var(--s2);border:1px solid var(--rand);padding:36px;line-height:1.8;color:var(--gr2);font-size:15px;">
+      <p style="margin-bottom:16px;"><strong style="color:var(--w);">Angaben gemäß § 5 TMG</strong></p>
+      <p style="margin-bottom:8px;color:var(--w);">Ben Middeldorf</p>
+      <p style="margin-bottom:8px;">Mi-Werk (in Gründung)</p>
+      <p style="margin-bottom:24px;">Bochum, Deutschland</p>
+      <p style="margin-bottom:8px;"><strong style="color:var(--w);">Kontakt</strong></p>
+      <p style="margin-bottom:4px;">Telefon: 0157 80609887</p>
+      <p style="margin-bottom:24px;">E-Mail: bm.miwerk.de@gmail.com</p>
+      <p style="margin-bottom:8px;"><strong style="color:var(--w);">Hinweis</strong></p>
+      <p>Die Mi-Werk UG (haftungsbeschränkt) befindet sich derzeit in Gründung. Nach Eintragung ins Handelsregister wird dieses Impressum entsprechend aktualisiert.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ─── DATENSCHUTZ ─── -->
+<div id="datenschutz" class="page">
+  <div style="max-width:800px;margin:0 auto;padding:64px 24px;">
+    <button onclick="history.back()" style="font-size:12px;font-weight:600;color:var(--gr2);letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;background:none;border:none;margin-bottom:32px;display:block;">← Zurück</button>
+    <h1 style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;margin-bottom:32px;">Datenschutz</h1>
+    <div style="background:var(--s2);border:1px solid var(--rand);padding:36px;line-height:1.8;color:var(--gr2);font-size:15px;">
+      <p style="margin-bottom:16px;"><strong style="color:var(--w);">1. Verantwortlicher</strong></p>
+      <p style="margin-bottom:24px;">Ben Middeldorf, bm.miwerk.de@gmail.com</p>
+      <p style="margin-bottom:16px;"><strong style="color:var(--w);">2. Erhobene Daten</strong></p>
+      <p style="margin-bottom:24px;">Bei der Registrierung erheben wir Name, E-Mail-Adresse, Telefonnummer, Gewerk und Stadt. Diese Daten werden ausschließlich zur Kontaktaufnahme und zur Bereitstellung unserer Dienstleistung verwendet.</p>
+      <p style="margin-bottom:16px;"><strong style="color:var(--w);">3. Google Analytics</strong></p>
+      <p style="margin-bottom:24px;">Diese Website nutzt Google Analytics zur Analyse des Nutzerverhaltens. Die Daten werden anonymisiert erfasst. Sie können der Erfassung widersprechen indem Sie einen Ad-Blocker verwenden.</p>
+      <p style="margin-bottom:16px;"><strong style="color:var(--w);">4. Formspree</strong></p>
+      <p style="margin-bottom:24px;">Formulardaten werden über Formspree (formspree.io) verarbeitet. Es gelten die Datenschutzbestimmungen von Formspree.</p>
+      <p style="margin-bottom:16px;"><strong style="color:var(--w);">5. Ihre Rechte</strong></p>
+      <p>Sie haben das Recht auf Auskunft, Berichtigung und Löschung Ihrer Daten. Kontakt: bm.miwerk.de@gmail.com</p>
+    </div>
+  </div>
+</div>
+
+<!-- ─── AGB ─── -->
+<div id="agb" class="page">
+  <div style="max-width:800px;margin:0 auto;padding:64px 24px;">
+    <button onclick="history.back()" style="font-size:12px;font-weight:600;color:var(--gr2);letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;background:none;border:none;margin-bottom:32px;display:block;">← Zurück</button>
+    <h1 style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;margin-bottom:32px;">AGB</h1>
+    <div style="background:var(--s2);border:1px solid var(--rand);padding:36px;line-height:1.8;color:var(--gr2);font-size:15px;">
+      <p style="margin-bottom:16px;"><strong style="color:var(--w);">1. Geltungsbereich</strong></p>
+      <p style="margin-bottom:24px;">Diese AGB gelten für alle Verträge zwischen Mi-Werk und Handwerkern die sich auf der Plattform mi-werk.de registrieren.</p>
+      <p style="margin-bottom:16px;"><strong style="color:var(--w);">2. Leistungen</strong></p>
+      <p style="margin-bottom:24px;">Mi-Werk stellt eine Online-Plattform bereit die Handwerker und Kunden in ihrer Region zusammenbringt. Die Sichtbarkeit des Profils ist abhängig vom gebuchten Paket.</p>
+      <p style="margin-bottom:16px;"><strong style="color:var(--w);">3. Preise und Zahlung</strong></p>
+      <p style="margin-bottom:24px;">Der Probe-Tarif ist im ersten Monat kostenlos, danach 19,99€/Monat. Der Standard-Tarif kostet 34,99€/Monat. Die Zahlung erfolgt monatlich im Voraus.</p>
+      <p style="margin-bottom:16px;"><strong style="color:var(--w);">4. Kündigungsfrist</strong></p>
+      <p style="margin-bottom:24px;">Die Kündigungsfrist beträgt 3 Monate zum Monatsende. Die Kündigung muss schriftlich per E-Mail an bm.miwerk.de@gmail.com erfolgen.</p>
+      <p style="margin-bottom:16px;"><strong style="color:var(--w);">5. Haftung</strong></p>
+      <p>Mi-Werk übernimmt keine Haftung für die Qualität der angebotenen Handwerkerleistungen. Die Plattform dient ausschließlich der Vermittlung.</p>
+    </div>
+  </div>
+</div>
 
 <script>
 const HANDWERKER = [];
