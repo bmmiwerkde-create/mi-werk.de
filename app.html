@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mi-Werk — Handwerker in deiner Region</title>
+<title>Mi-Werk — Dienstleister in deiner Region</title>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6Z4QHP5KR2"></script>
 <script>
@@ -240,12 +240,11 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
 <!-- NAV -->
 <nav>
   <a class="logo" onclick="zeigSeite('start')">
-    <div class="logo-box">⚒</div>
-    <div class="logo-txt">Mi<span>-Werk</span></div>
+    <div class="logo-txt" style="font-size:22px;">Mi<span>-Werk</span></div>
   </a>
   <div class="nav-links">
-    <button class="nav-link" onclick="zeigSeite('suche')">Handwerker finden</button>
-    <button class="nav-link" onclick="zeigSeite('anmelden')">Für Handwerker</button>
+    <button class="nav-link" onclick="zeigSeite('suche')">Dienstleister finden</button>
+    <button class="nav-link" onclick="zeigSeite('anmelden')">Für Dienstleister</button>
     <a href="index.html" class="nav-link">Warteliste</a>
   </div>
   <button class="nav-btn" onclick="zeigSeite('anmelden')">Jetzt anmelden</button>
@@ -270,20 +269,43 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
     </div>
 
     <div style="width:100%;max-width:800px;margin:0 auto;text-align:center;position:relative;z-index:1;">
-      <h1 class="hero-h1" style="text-align:center;margin-bottom:16px;">Den richtigen<br><span class="g">Handwerker</span><br>finden.</h1>
-      <p class="hero-sub" style="text-align:center;margin:0 auto 40px;">Mi-Werk verbindet Handwerker mit Kunden in ihrer Region — fair, lokal und ohne Risiko.</p>
+      <h1 class="hero-h1" style="text-align:center;margin-bottom:16px;">Den richtigen<br><span class="g">Dienstleister</span><br>finden.</h1>
+      <p class="hero-sub" style="text-align:center;margin:0 auto 40px;">Mi-Werk verbindet Dienstleister mit Kunden in ihrer Region — fair, lokal und ohne Risiko.</p>
 
       <!-- SUCHBEREICH -->
       <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(200,149,108,0.25);padding:28px 32px;margin-bottom:40px;">
-        <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--g);margin-bottom:16px;">Gewerk auswählen</div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--g);margin-bottom:16px;">Kategorie auswählen</div>
         <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:24px;" id="hero-chips">
           <div class="hero-chip aktiv-chip" onclick="heroFilter('')">Alle</div>
+          <div style="width:100%;font-size:10px;color:var(--gr);text-align:center;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;">🔨 Handwerk</div>
           <div class="hero-chip" onclick="heroFilter('Elektriker')">⚡ Elektriker</div>
           <div class="hero-chip" onclick="heroFilter('Maler')">🖌️ Maler</div>
           <div class="hero-chip" onclick="heroFilter('Klempner')">🔧 Klempner</div>
           <div class="hero-chip" onclick="heroFilter('Tischler')">🪵 Tischler</div>
           <div class="hero-chip" onclick="heroFilter('Fliesenleger')">🟦 Fliesenleger</div>
           <div class="hero-chip" onclick="heroFilter('Dachdecker')">🏠 Dachdecker</div>
+          <div style="width:100%;font-size:10px;color:var(--gr);text-align:center;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;margin-top:8px;">🏥 Gesundheit</div>
+          <div class="hero-chip" onclick="heroFilter('Zahnarzt')">🦷 Zahnarzt</div>
+          <div class="hero-chip" onclick="heroFilter('Kieferorthopäde')">😁 Kieferorthopäde</div>
+          <div class="hero-chip" onclick="heroFilter('Physiotherapeut')">💪 Physiotherapeut</div>
+          <div class="hero-chip" onclick="heroFilter('Hausarzt')">🩺 Hausarzt</div>
+          <div class="hero-chip" onclick="heroFilter('Kinderarzt')">👶 Kinderarzt</div>
+          <div style="width:100%;font-size:10px;color:var(--gr);text-align:center;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;margin-top:8px;">💈 Beauty & Pflege</div>
+          <div class="hero-chip" onclick="heroFilter('Friseur')">✂️ Friseur</div>
+          <div class="hero-chip" onclick="heroFilter('Kosmetiker')">💄 Kosmetiker</div>
+          <div class="hero-chip" onclick="heroFilter('Nagelstudio')">💅 Nagelstudio</div>
+          <div class="hero-chip" onclick="heroFilter('Massage')">🧘 Massage</div>
+          <div style="width:100%;font-size:10px;color:var(--gr);text-align:center;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;margin-top:8px;">🐾 Tiere</div>
+          <div class="hero-chip" onclick="heroFilter('Tierarzt')">🐾 Tierarzt</div>
+          <div class="hero-chip" onclick="heroFilter('Hundefriseur')">🐶 Hundefriseur</div>
+          <div style="width:100%;font-size:10px;color:var(--gr);text-align:center;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;margin-top:8px;">🏋️ Fitness & Bildung</div>
+          <div class="hero-chip" onclick="heroFilter('Personal Trainer')">🏋️ Personal Trainer</div>
+          <div class="hero-chip" onclick="heroFilter('Ernährungsberater')">🥗 Ernährungsberater</div>
+          <div class="hero-chip" onclick="heroFilter('Nachhilfelehrer')">📚 Nachhilfe</div>
+          <div class="hero-chip" onclick="heroFilter('Fahrlehrer')">🚗 Fahrlehrer</div>
+          <div style="width:100%;font-size:10px;color:var(--gr);text-align:center;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;margin-top:8px;">🚗 Auto</div>
+          <div class="hero-chip" onclick="heroFilter('Autowerkstatt')">🔩 Autowerkstatt</div>
+          <div class="hero-chip" onclick="heroFilter('Reifenservice')">🛞 Reifenservice</div>
         </div>
         <div style="display:grid;grid-template-columns:1fr auto;gap:12px;">
           <input class="f-input" id="hero-ort" placeholder="📍 Stadt oder Region eingeben…">
@@ -293,14 +315,14 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
 
       <!-- TOP ERGEBNISSE -->
       <div id="hero-ergebnisse" style="display:none;">
-        <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--g);margin-bottom:20px;" id="hero-label">Top bewertete Handwerker</div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--g);margin-bottom:20px;" id="hero-label">Top bewertete Dienstleister</div>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" id="hero-grid"></div>
-        <button onclick="zeigSeite('suche')" style="margin-top:24px;font-size:13px;font-weight:600;color:var(--g);cursor:pointer;background:none;border:none;letter-spacing:0.06em;text-transform:uppercase;text-decoration:underline;">Alle Handwerker anzeigen →</button>
+        <button onclick="zeigSeite('suche')" style="margin-top:24px;font-size:13px;font-weight:600;color:var(--g);cursor:pointer;background:none;border:none;letter-spacing:0.06em;text-transform:uppercase;text-decoration:underline;">Alle Dienstleister anzeigen →</button>
       </div>
 
       <div id="hero-btns-wrap" style="display:flex;gap:14px;justify-content:center;margin-top:16px;">
-        <button class="btn-p" onclick="zeigSeite('suche')">Alle Handwerker</button>
-        <button class="btn-g" onclick="zeigSeite('anmelden')">Als Handwerker eintragen</button>
+        <button class="btn-p" onclick="zeigSeite('suche')">Alle Dienstleister</button>
+        <button class="btn-g" onclick="zeigSeite('anmelden')">Als Dienstleister eintragen</button>
       </div>
     </div>
   </section>
@@ -316,13 +338,16 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
   </section>
 
   <div class="cta-band">
-    <h2>Bist du Handwerker?<br>Werde jetzt sichtbar.</h2>
+    <h2>Bist du Dienstleister?<br>Werde jetzt sichtbar.</h2>
     <button class="cta-band-btn" onclick="zeigSeite('anmelden')">Kostenlos eintragen</button>
   </div>
 
   <footer>
     <div class="footer-logo">Mi<span>-Werk</span></div>
-    <div class="footer-text">© 2025 Mi-Werk · Bochum</div>
+    <div style="text-align:center;">
+      <div class="footer-text" style="margin-bottom:6px;">© 2025 Mi-Werk · Bochum</div>
+      <div class="footer-text" style="font-size:11px;color:#333;">Hosting: GitHub Pages · Domain: United Domains</div>
+    </div>
     <div class="footer-links">
       <span class="footer-link" onclick="zeigSeite('impressum')">Impressum</span>
       <span class="footer-link" onclick="zeigSeite('datenschutz')">Datenschutz</span>
@@ -334,8 +359,8 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
 <!-- ─── SUCHSEITE ─── -->
 <div id="suche" class="page">
   <div class="suche-header">
-    <h1>Handwerker finden</h1>
-    <p id="anz-text">Lade Handwerker...</p>
+    <h1>Dienstleister finden</h1>
+    <p id="anz-text">Lade Dienstleister...</p>
   </div>
   <div class="suche-body">
     <div class="filter-panel">
@@ -354,13 +379,42 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
       <div class="filter-gruppe">
         <label class="filter-label">Gewerk</label>
         <select class="f-select" id="f-gewerk" onchange="filtern();updateChips()">
-          <option value="">Alle Gewerke</option>
-          <option>Elektriker</option>
-          <option>Maler</option>
-          <option>Klempner</option>
-          <option>Tischler</option>
-          <option>Fliesenleger</option>
-          <option>Dachdecker</option>
+          <option value="">Alle Kategorien</option>
+          <optgroup label="🔨 Handwerk">
+            <option>Elektriker</option>
+            <option>Maler</option>
+            <option>Klempner</option>
+            <option>Tischler</option>
+            <option>Fliesenleger</option>
+            <option>Dachdecker</option>
+          </optgroup>
+          <optgroup label="🏥 Gesundheit">
+            <option>Zahnarzt</option>
+            <option>Kieferorthopäde</option>
+            <option>Physiotherapeut</option>
+            <option>Hausarzt</option>
+            <option>Kinderarzt</option>
+          </optgroup>
+          <optgroup label="💈 Beauty & Pflege">
+            <option>Friseur</option>
+            <option>Kosmetiker</option>
+            <option>Nagelstudio</option>
+            <option>Massage</option>
+          </optgroup>
+          <optgroup label="🐾 Tiere">
+            <option>Tierarzt</option>
+            <option>Hundefriseur</option>
+          </optgroup>
+          <optgroup label="🏋️ Fitness & Bildung">
+            <option>Personal Trainer</option>
+            <option>Ernährungsberater</option>
+            <option>Nachhilfelehrer</option>
+            <option>Fahrlehrer</option>
+          </optgroup>
+          <optgroup label="🚗 Auto">
+            <option>Autowerkstatt</option>
+            <option>Reifenservice</option>
+          </optgroup>
         </select>
       </div>
       <div class="filter-gruppe" id="chip-gruppe" style="display:none">
@@ -425,7 +479,7 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
           <div class="k-hinweis">Kostenlos und unverbindlich</div>
           <div style="margin-top:14px;border-top:1px solid var(--rand);padding-top:14px;">
             <button class="k-btn" style="background:transparent;border:1px solid var(--g);color:var(--g);" onclick="terminBuchen()">📅 Termin buchen</button>
-            <div class="k-hinweis" style="margin-top:8px;">Direkt in den Kalender des Handwerkers</div>
+            <div class="k-hinweis" style="margin-top:8px;">Direkt in den Kalender des Dienstleisters</div>
           </div>
         </div>
       </div>
@@ -437,29 +491,52 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
 <div id="anmelden" class="page">
   <div class="anmelden-body">
     <div class="anmelden-kopf">
-      <span class="sek-label">Für Handwerker</span>
+      <span class="sek-label">Für Dienstleister</span>
       <h1>Profil erstellen</h1>
       <p>Werde sichtbar für tausende Kunden in deiner Region.</p>
     </div>
     <div class="anmelden-box">
-      <form action="https://formspree.io/f/xgoqavpa" method="POST" onsubmit="setTimeout(()=>zeigSeite('zahlung'),100)">
+      <form action="https://formspree.io/f/xgoqavpa" method="POST" onsubmit="speichereKategorie();setTimeout(()=>zeigSeite('zahlung'),100)">
       <div class="a-row">
         <div><label class="a-label">Vorname</label><input class="a-input" name="vorname" placeholder="Max"></div>
         <div><label class="a-label">Nachname</label><input class="a-input" name="nachname" placeholder="Mustermann"></div>
       </div>
       <label class="a-label">E-Mail-Adresse</label>
-      <input class="a-input" name="email" placeholder="max@handwerk.de" type="email">
+      <input class="a-input" name="email" placeholder="max@beispiel.de" type="email">
       <label class="a-label">Telefonnummer</label>
       <input class="a-input" name="telefon" placeholder="+49 …" type="tel">
       <div class="a-row">
-        <div><label class="a-label">Gewerk</label><input class="a-input" name="gewerk" placeholder="z.B. Elektriker, Maler…"></div>
+        <div>
+          <label class="a-label">Kategorie</label>
+          <select class="a-input" name="kategorie" id="anmeld-kategorie" style="appearance:none;cursor:pointer;" onchange="updateAnmeldPreis()">
+            <option value="">Bitte wählen...</option>
+            <optgroup label="🔨 Handwerk">
+              <option value="handwerk">Elektriker, Maler, Klempner etc.</option>
+            </optgroup>
+            <optgroup label="🏥 Gesundheit">
+              <option value="gesundheit">Arzt, Zahnarzt, Physiotherapeut etc.</option>
+            </optgroup>
+            <optgroup label="💈 Beauty & Pflege">
+              <option value="beauty">Friseur, Kosmetiker, Nagelstudio etc.</option>
+            </optgroup>
+            <optgroup label="🐾 Tiere">
+              <option value="tiere">Tierarzt, Hundefriseur etc.</option>
+            </optgroup>
+            <optgroup label="🏋️ Fitness & Bildung">
+              <option value="fitness">Personal Trainer, Nachhilfe etc.</option>
+            </optgroup>
+            <optgroup label="🚗 Auto">
+              <option value="auto">Autowerkstatt, Reifenservice etc.</option>
+            </optgroup>
+          </select>
+        </div>
         <div><label class="a-label">Stadt / PLZ</label><input class="a-input" name="stadt" placeholder="Bochum, 44801"></div>
       </div>
-      <label class="a-label">Stundensatz (€)</label>
+      <label class="a-label">Stundensatz / Preis (€)</label>
       <input class="a-input" name="stundensatz" placeholder="z.B. 65" type="number">
       <label class="a-label">Kurzbeschreibung</label>
       <input class="a-input" name="beschreibung" placeholder="Was machst du? Was zeichnet dich aus?">
-      <button class="a-btn" type="submit">Kostenlos registrieren →</button>
+      <button class="a-btn" type="submit">Als Dienstleister registrieren →</button>
       <div class="a-hinweis">Keine Kreditkarte nötig · Jederzeit kündbar</div>
       </form>
     </div>
@@ -479,7 +556,7 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
         <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--g);margin-bottom:8px;">Probe</div>
         <div style="font-family:'Playfair Display',serif;font-size:42px;font-weight:900;color:var(--g);line-height:1;">0€</div>
         <div style="font-size:13px;color:var(--gr2);margin-bottom:4px;">1. Monat kostenlos</div>
-        <div style="font-size:13px;color:var(--gr2);margin-bottom:20px;">danach 19,99€ / Monat</div>
+        <div style="font-size:13px;color:var(--gr2);margin-bottom:20px;">danach <span id="probe-preis">19,99€</span> / Monat</div>
         <div style="font-size:13px;color:var(--gr);margin-bottom:6px;">✓ Profil sichtbar</div>
         <div style="font-size:13px;color:var(--gr);margin-bottom:6px;">✓ Kontaktformular</div>
         <div style="font-size:13px;color:var(--gr);">✓ E-Mail Support</div>
@@ -488,7 +565,7 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
       <div style="background:rgba(200,149,108,0.08);border:1px solid var(--g);padding:32px;cursor:pointer;transition:all 0.2s;position:relative;" onclick="paketWaehlen('standard')" id="paket-pro">
         <div style="position:absolute;top:-1px;left:24px;background:var(--g);color:var(--s);padding:3px 12px;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">EMPFOHLEN</div>
         <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--g);margin-bottom:8px;">Standard</div>
-        <div style="font-family:'Playfair Display',serif;font-size:42px;font-weight:900;color:white;line-height:1;">34,99€</div>
+        <div style="font-family:'Playfair Display',serif;font-size:42px;font-weight:900;color:white;line-height:1;" id="standard-preis-display">34,99€</div>
         <div style="font-size:13px;color:var(--gr2);margin-bottom:20px;">/ Monat</div>
         <div style="font-size:13px;color:var(--gr);margin-bottom:6px;">✓ Alles aus Probe</div>
         <div style="font-size:13px;color:var(--gr);margin-bottom:6px;">✓ Priorität in Suche</div>
@@ -503,6 +580,17 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
       <button class="a-btn" id="stripe-btn" onclick="stripeWeiterleitung()" style="max-width:400px;margin:0 auto;">Jetzt bezahlen →</button>
       <div class="a-hinweis" style="margin-top:12px;">Noch nicht verfügbar — kommt bald!</div>
     </div>
+  </div>
+</div>
+
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;z-index:999;background:var(--s2);border-top:1px solid var(--rand);padding:20px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+  <div style="flex:1;min-width:200px;">
+    <p style="font-size:13px;color:var(--gr2);line-height:1.6;">🍪 Diese Website verwendet Cookies für Google Analytics um das Nutzerverhalten zu analysieren. <span onclick="zeigSeite('datenschutz')" style="color:var(--g);cursor:pointer;text-decoration:underline;">Mehr erfahren</span></p>
+  </div>
+  <div style="display:flex;gap:10px;flex-shrink:0;">
+    <button onclick="cookieAblehnen()" style="background:transparent;border:1px solid var(--rand);color:var(--gr2);padding:10px 20px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;">Ablehnen</button>
+    <button onclick="cookieAkzeptieren()" style="background:var(--g);border:none;color:var(--s);padding:10px 20px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;">Akzeptieren</button>
   </div>
 </div>
 
@@ -522,7 +610,10 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
       <p style="margin-bottom:4px;">Telefon: 0157 80609887</p>
       <p style="margin-bottom:24px;">E-Mail: bm.miwerk.de@gmail.com</p>
       <p style="margin-bottom:8px;"><strong style="color:var(--w);">Hinweis</strong></p>
-      <p>Die Mi-Werk UG (haftungsbeschränkt) befindet sich derzeit in Gründung. Nach Eintragung ins Handelsregister wird dieses Impressum entsprechend aktualisiert.</p>
+      <p style="margin-bottom:16px;">Die Mi-Werk UG (haftungsbeschränkt) befindet sich derzeit in Gründung. Nach Eintragung ins Handelsregister wird dieses Impressum entsprechend aktualisiert.</p>
+      <p style="margin-bottom:8px;"><strong style="color:var(--w);">Hosting & Technik</strong></p>
+      <p style="margin-bottom:4px;">Hosting: GitHub Pages · GitHub Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA</p>
+      <p>Domain: United Domains AG · Gautinger Str. 10, 82319 Starnberg, Deutschland</p>
     </div>
   </div>
 </div>
@@ -554,15 +645,15 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
     <h1 style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;margin-bottom:32px;">AGB</h1>
     <div style="background:var(--s2);border:1px solid var(--rand);padding:36px;line-height:1.8;color:var(--gr2);font-size:15px;">
       <p style="margin-bottom:16px;"><strong style="color:var(--w);">1. Geltungsbereich</strong></p>
-      <p style="margin-bottom:24px;">Diese AGB gelten für alle Verträge zwischen Mi-Werk und Handwerkern die sich auf der Plattform mi-werk.de registrieren.</p>
+      <p style="margin-bottom:24px;">Diese AGB gelten für alle Verträge zwischen Mi-Werk und Dienstleistern die sich auf der Plattform mi-werk.de registrieren.</p>
       <p style="margin-bottom:16px;"><strong style="color:var(--w);">2. Leistungen</strong></p>
-      <p style="margin-bottom:24px;">Mi-Werk stellt eine Online-Plattform bereit die Handwerker und Kunden in ihrer Region zusammenbringt. Die Sichtbarkeit des Profils ist abhängig vom gebuchten Paket.</p>
+      <p style="margin-bottom:24px;">Mi-Werk stellt eine Online-Plattform bereit die Dienstleister und Kunden in ihrer Region zusammenbringt. Die Sichtbarkeit des Profils ist abhängig vom gebuchten Paket.</p>
       <p style="margin-bottom:16px;"><strong style="color:var(--w);">3. Preise und Zahlung</strong></p>
       <p style="margin-bottom:24px;">Der Probe-Tarif ist im ersten Monat kostenlos, danach 19,99€/Monat. Der Standard-Tarif kostet 34,99€/Monat. Die Zahlung erfolgt monatlich im Voraus.</p>
       <p style="margin-bottom:16px;"><strong style="color:var(--w);">4. Kündigungsfrist</strong></p>
       <p style="margin-bottom:24px;">Die Kündigungsfrist beträgt 3 Monate zum Monatsende. Die Kündigung muss schriftlich per E-Mail an bm.miwerk.de@gmail.com erfolgen.</p>
       <p style="margin-bottom:16px;"><strong style="color:var(--w);">5. Haftung</strong></p>
-      <p>Mi-Werk übernimmt keine Haftung für die Qualität der angebotenen Handwerkerleistungen. Die Plattform dient ausschließlich der Vermittlung.</p>
+      <p>Mi-Werk übernimmt keine Haftung für die Qualität der angebotenen Dienstleistungen. Die Plattform dient ausschließlich der Vermittlung.</p>
     </div>
   </div>
 </div>
@@ -577,18 +668,27 @@ const CHIPS = {
   Tischler:["Maßmöbel","Türen & Fenster","Treppen","Küche","Einbauschränke"],
   Fliesenleger:["Badezimmer","Küche","Terrasse","Naturstein","Großformat"],
   Dachdecker:["Dachsanierung","Dämmung","Flachdach","Dachfenster","Neueindeckung"],
+  Zahnarzt:["Prophylaxe","Implantate","Zahnkorrektur","Bleaching","Notfallbehandlung"],
+  Kieferorthopäde:["Brackets","Aligner","Retainer","Erstberatung","Kinder & Jugendliche"],
+  Physiotherapeut:["Rücken","Sportreha","Massage","Krankengymnastik","Hausbesuche"],
+  Hausarzt:["Vorsorge","Impfungen","Überweisung","Blutabnahme","Akuttermine"],
+  Kinderarzt:["Vorsorge","Impfungen","Akuttermine","U-Untersuchungen","Beratung"],
+  Friseur:["Haarschnitt","Färben","Stylen","Hochzeitsfrisur","Kinder"],
+  Kosmetiker:["Gesichtsbehandlung","Waxing","Make-up","Wimpern","Peeling"],
+  Nagelstudio:["Gel-Nägel","Shellac","Nageldesign","Maniküre","Pediküre"],
+  Massage:["Entspannungsmassage","Sportmassage","Rückenmassage","Hot Stone","Lymphdrainage"],
+  Tierarzt:["Impfungen","Notfall","Kastration","Zahnpflege","Vorsorge"],
+  Hundefriseur:["Scheren","Baden","Krallen","Fell pflegen","Ohrenreinigung"],
+  "Personal Trainer":["Krafttraining","Abnehmen","Ausdauer","Ernährung","Online Coaching"],
+  Ernährungsberater:["Gewichtsabnahme","Muskelaufbau","Allergien","Sporternährung","Erstberatung"],
+  Nachhilfelehrer:["Mathematik","Englisch","Deutsch","Physik","Abitur"],
+  Fahrlehrer:["Führerschein B","Automatik","Intensivkurs","Auffrischung","Motorrad"],
+  Autowerkstatt:["Inspektion","TÜV","Reifenwechsel","Bremsen","Unfallschaden"],
+  Reifenservice:["Sommerreifen","Winterreifen","Einlagern","Felgen","RDKS"],
 };
 
 let aktivChip = "";
 let aktivHW = null;
-
-function zeigSeite(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('aktiv'));
-  document.getElementById(id).classList.add('aktiv');
-  window.scrollTo(0,0);
-  if(id==='suche')filtern();
-  if(id==='start')renderTop();
-}
 
 function filtern(){
   const suche = document.getElementById('f-suche').value.toLowerCase();
@@ -607,7 +707,7 @@ function filtern(){
     return mGewerk&&mOrt&&mPreis&&mSuche&&mChip&&mLeistung;
   });
 
-  document.getElementById('anz-text').textContent = `${gef.length} Handwerker gefunden`;
+  document.getElementById('anz-text').textContent = `${gef.length} Dienstleister gefunden`;
 
   const cont = document.getElementById('ergebnisse');
   if(gef.length===0){
@@ -677,6 +777,65 @@ function zeigProfil(id){
   zeigSeite('profil');
 }
 
+// Cookie Banner
+function cookiePruefen() {
+  const consent = localStorage.getItem('cookie-consent');
+  if (consent === 'accepted') {
+    document.getElementById('cookie-banner').style.display = 'none';
+  } else if (consent === 'rejected') {
+    document.getElementById('cookie-banner').style.display = 'none';
+    // Google Analytics deaktivieren
+    window['ga-disable-G-6Z4QHP5KR2'] = true;
+  }
+}
+
+function cookieAkzeptieren() {
+  localStorage.setItem('cookie-consent', 'accepted');
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+
+function cookieAblehnen() {
+  localStorage.setItem('cookie-consent', 'rejected');
+  window['ga-disable-G-6Z4QHP5KR2'] = true;
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+
+cookiePruefen();
+
+const PREISE = {
+  handwerk:  { probe: '19,99€', standard: '34,99€' },
+  gesundheit:{ probe: '29,99€', standard: '44,99€' },
+  beauty:    { probe: '9,99€',  standard: '19,99€' },
+  tiere:     { probe: '14,99€', standard: '24,99€' },
+  fitness:   { probe: '14,99€', standard: '24,99€' },
+  auto:      { probe: '19,99€', standard: '34,99€' },
+};
+
+let gewaehlteKategorie = 'handwerk';
+
+function speichereKategorie() {
+  const sel = document.getElementById('anmeld-kategorie');
+  gewaehlteKategorie = sel.value || 'handwerk';
+}
+
+function updateAnmeldPreis() {
+  // nothing needed here, pricing shown on next page
+}
+
+function zeigSeite(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('aktiv'));
+  document.getElementById(id).classList.add('aktiv');
+  window.scrollTo(0,0);
+  if(id==='suche')filtern();
+  if(id==='zahlung') aktualisiereZahlungsPreise();
+}
+
+function aktualisiereZahlungsPreise() {
+  const p = PREISE[gewaehlteKategorie] || PREISE['handwerk'];
+  document.getElementById('probe-preis').textContent = p.probe;
+  document.getElementById('standard-preis-display').textContent = p.standard;
+}
+
 let gewaehltesPaket = 'pro';
 
 function paketWaehlen(paket) {
@@ -693,7 +852,7 @@ function terminBuchen(){
   if(aktivHW && aktivHW.calendly){
     window.open(aktivHW.calendly, '_blank');
   } else {
-    zeigToast('Dieser Handwerker hat noch keinen Kalender hinterlegt.');
+    zeigToast('Dieser Dienstleister hat noch keinen Kalender hinterlegt.');
   }
 }
 
@@ -739,12 +898,12 @@ function heroSuchen() {
 
   if(gef.length === 0) {
     wrap.style.display = 'block';
-    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--gr2);padding:24px;">Keine Handwerker gefunden — versuche andere Filter.</div>';
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--gr2);padding:24px;">Keine Dienstleister gefunden — versuche andere Filter.</div>';
     btns.style.display = 'none';
     return;
   }
 
-  label.textContent = heroGewerk ? `Top ${heroGewerk} in deiner Region` : 'Top bewertete Handwerker';
+  label.textContent = heroGewerk ? `Top ${heroGewerk} in deiner Region` : 'Top bewertete Dienstleister';
   wrap.style.display = 'block';
   btns.style.display = 'none';
 
