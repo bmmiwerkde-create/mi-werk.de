@@ -243,7 +243,7 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
     <a class="logo" onclick="zeigSeite('start')" style="cursor:pointer;">
       <div class="logo-txt" style="font-size:22px;white-space:nowrap;">Mi<span>-Werk</span></div>
     </a>
-    <button onclick="zeigSeite('start')" style="background:none;border:none;color:var(--gr2);cursor:pointer;font-size:18px;padding:4px;" title="Startseite">🏠</button>
+    <button onclick="zeigSeite('start')" style="background:none;border:none;color:var(--gr2);cursor:pointer;font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:4px;" title="Startseite">Startseite</button>
   </div>
   <div class="nav-links">
     <button class="nav-link" onclick="zeigSeite('suche')">Dienstleister finden</button>
@@ -281,7 +281,8 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
         <!-- Suchleiste oben -->
         <div style="display:flex;gap:12px;margin-bottom:20px;">
           <input class="f-input" id="hero-freitext" placeholder="🔍 Was suchst du? z.B. Elektriker, Friseur, Zahnarzt…" style="flex:1;padding:13px 16px;font-size:15px;" oninput="heroSuchen()">
-          <input class="f-input" id="hero-ort" placeholder="📍 Stadt…" style="width:180px;padding:13px 16px;" oninput="heroSuchen()">
+          <input class="f-input" id="hero-ort" placeholder="📍 Stadt…" style="width:160px;padding:13px 16px;" oninput="heroSuchen()">
+          <input class="f-input" type="date" id="hero-datum" style="width:190px;padding:13px 16px;font-size:15px;color-scheme:dark;" onchange="heroSuchen()">
           <button class="btn-p" style="padding:13px 24px;font-size:13px;white-space:nowrap;" onclick="heroSuchen()">Suchen</button>
         </div>
         <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--g);margin-bottom:16px;">Kategorie auswählen</div>
@@ -359,10 +360,7 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
         <span class="footer-link" onclick="zeigSeite('impressum')">Impressum</span>
         <span class="footer-link" onclick="zeigSeite('datenschutz')">Datenschutz</span>
         <span class="footer-link" onclick="zeigSeite('agb')">AGB</span>
-      </div>
-      <div style="font-size:12px;color:var(--gr);">
-        <a href="tel:015780609887" style="color:var(--g);text-decoration:none;">0157 80609887</a> · 
-        <a href="mailto:bm.miwerk.de@gmail.com" style="color:var(--g);text-decoration:none;">bm.miwerk.de@gmail.com</a>
+        <span class="footer-link" onclick="zeigSeite('kontakt')">Kontakt</span>
       </div>
     </div>
   </footer>
@@ -438,6 +436,27 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
         <label class="filter-label">Max. Preis: <span id="preis-val" style="color:var(--g)">200€/h</span></label>
         <input class="f-slider" type="range" min="20" max="200" value="200" id="f-preis" oninput="document.getElementById('preis-val').textContent=this.value+'€/h';filtern()">
         <div class="slider-labels"><span>20€</span><span>200€</span></div>
+      </div>
+      <div class="filter-gruppe">
+        <label class="filter-label">📅 Datum</label>
+        <input class="f-input" type="date" id="f-datum" onchange="filtern()" style="color-scheme:dark;">
+      </div>
+      <div class="filter-gruppe">
+        <label class="filter-label">🕐 Uhrzeit</label>
+        <select class="f-select" id="f-uhrzeit" onchange="filtern()">
+          <option value="">Beliebige Uhrzeit</option>
+          <option value="08:00">08:00 Uhr</option>
+          <option value="09:00">09:00 Uhr</option>
+          <option value="10:00">10:00 Uhr</option>
+          <option value="11:00">11:00 Uhr</option>
+          <option value="12:00">12:00 Uhr</option>
+          <option value="13:00">13:00 Uhr</option>
+          <option value="14:00">14:00 Uhr</option>
+          <option value="15:00">15:00 Uhr</option>
+          <option value="16:00">16:00 Uhr</option>
+          <option value="17:00">17:00 Uhr</option>
+          <option value="18:00">18:00 Uhr</option>
+        </select>
       </div>
     </div>
     <div class="ergebnisse" id="ergebnisse"></div>
@@ -544,6 +563,8 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
         </div>
         <div><label class="a-label">Stadt / PLZ</label><input class="a-input" name="stadt" placeholder="Bochum, 44801"></div>
       </div>
+      <label class="a-label">Genaues Gewerk / Tätigkeit</label>
+      <input class="a-input" name="gewerk_genau" placeholder="z.B. Nagelstudio, Elektroinstallation, Kinderzahnarzt…">
       <label class="a-label">Stundensatz / Preis (€)</label>
       <input class="a-input" name="stundensatz" placeholder="z.B. 65" type="number">
       <label class="a-label">Kurzbeschreibung</label>
@@ -567,10 +588,11 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px;">
       <div style="background:var(--s2);border:1px solid var(--rand);padding:32px;cursor:pointer;transition:all 0.2s;" onclick="paketWaehlen('probe')" id="paket-basic">
-        <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--g);margin-bottom:8px;">Probe</div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--g);margin-bottom:8px;">Einstieg</div>
         <div style="font-family:'Playfair Display',serif;font-size:42px;font-weight:900;color:var(--g);line-height:1;">0€</div>
-        <div style="font-size:13px;color:var(--gr2);margin-bottom:4px;">1. Monat kostenlos</div>
-        <div style="font-size:13px;color:var(--gr2);margin-bottom:20px;">danach <span id="probe-preis">19,99€</span> / Monat</div>
+        <div style="font-size:13px;color:var(--gr2);margin-bottom:4px;font-weight:700;">6 Monate kostenlos</div>
+        <div style="font-size:13px;color:var(--gr2);margin-bottom:4px;">danach 2 Monate <span id="probe-preis">19,99€</span> / Monat</div>
+        <div style="font-size:13px;color:var(--gr2);margin-bottom:20px;">dann <span id="probe-normal-preis">34,99€</span> / Monat</div>
         <div style="font-size:13px;color:var(--gr);margin-bottom:6px;">✓ Profil sichtbar</div>
         <div style="font-size:13px;color:var(--gr);margin-bottom:6px;">✓ Kontaktformular</div>
         <div style="font-size:13px;color:var(--gr);">✓ E-Mail Support</div>
@@ -581,7 +603,7 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
         <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--g);margin-bottom:8px;">Standard</div>
         <div style="font-family:'Playfair Display',serif;font-size:42px;font-weight:900;color:white;line-height:1;" id="standard-preis-display">34,99€</div>
         <div style="font-size:13px;color:var(--gr2);margin-bottom:20px;">/ Monat</div>
-        <div style="font-size:13px;color:var(--gr);margin-bottom:6px;">✓ Alles aus Probe</div>
+        <div style="font-size:13px;color:var(--gr);margin-bottom:6px;">✓ Alles aus Einstieg</div>
         <div style="font-size:13px;color:var(--gr);margin-bottom:6px;">✓ Priorität in Suche</div>
         <div style="font-size:13px;color:var(--gr);">✓ Unbegrenzt Fotos</div>
         <div style="font-size:11px;color:var(--gr);margin-top:12px;padding-top:12px;border-top:1px solid rgba(200,149,108,0.2);">3 Monate Kündigungsfrist</div>
@@ -609,6 +631,43 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
 </div>
 
 <div class="toast" id="toast"></div>
+
+<!-- ─── KONTAKT ─── -->
+<div id="kontakt" class="page">
+  <div style="max-width:800px;margin:0 auto;padding:64px 24px;">
+    <button onclick="history.back()" style="font-size:12px;font-weight:600;color:var(--gr2);letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;background:none;border:none;margin-bottom:32px;display:block;">← Zurück</button>
+    <h1 style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;margin-bottom:32px;">Kontakt</h1>
+    <div style="background:var(--s2);border:1px solid var(--rand);padding:36px;">
+      <p style="font-size:15px;color:var(--gr2);margin-bottom:32px;line-height:1.8;">Du hast Fragen zu Mi-Werk oder möchtest dich als Dienstleister eintragen? Melde dich gerne direkt bei mir!</p>
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <div style="width:44px;height:44px;background:var(--g);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">📞</div>
+          <div>
+            <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gr);margin-bottom:4px;">Telefon</div>
+            <a href="tel:015780609887" style="font-size:17px;font-weight:700;color:var(--w);text-decoration:none;">0157 80609887</a>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <div style="width:44px;height:44px;background:var(--g);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">✉️</div>
+          <div>
+            <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gr);margin-bottom:4px;">E-Mail</div>
+            <a href="mailto:bm.miwerk.de@gmail.com" style="font-size:17px;font-weight:700;color:var(--w);text-decoration:none;">bm.miwerk.de@gmail.com</a>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <div style="width:44px;height:44px;background:var(--g);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🌐</div>
+          <div>
+            <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gr);margin-bottom:4px;">Website</div>
+            <a href="https://mi-werk.de" style="font-size:17px;font-weight:700;color:var(--g);text-decoration:none;">mi-werk.de</a>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:28px;padding-top:24px;border-top:1px solid var(--rand);font-size:13px;color:var(--gr);">
+        Ben Middeldorf — Gründer Mi-Werk · Bochum
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ─── IMPRESSUM ─── -->
 <div id="impressum" class="page">
@@ -710,6 +769,8 @@ function filtern(){
   const gewerk = document.getElementById('f-gewerk').value;
   const preis = parseInt(document.getElementById('f-preis').value);
   const leistung = document.getElementById('f-leistung')?.value.toLowerCase()||'';
+  const datum = document.getElementById('f-datum')?.value || '';
+  const uhrzeit = document.getElementById('f-uhrzeit')?.value || '';
 
   const gef = HANDWERKER.filter(h=>{
     const mGewerk = !gewerk || h.gewerk===gewerk;
@@ -718,16 +779,61 @@ function filtern(){
     const mSuche = !suche || h.name.toLowerCase().includes(suche) || h.gewerk.toLowerCase().includes(suche) || h.desc.toLowerCase().includes(suche);
     const mChip = !aktivChip || h.desc.toLowerCase().includes(aktivChip.toLowerCase());
     const mLeistung = !leistung || h.desc.toLowerCase().includes(leistung);
-    return mGewerk&&mOrt&&mPreis&&mSuche&&mChip&&mLeistung;
+    const mVerf = !datum || h.verf; // Wenn Datum gesetzt nur verfügbare zeigen
+    return mGewerk&&mOrt&&mPreis&&mSuche&&mChip&&mLeistung&&mVerf;
   });
 
   document.getElementById('anz-text').textContent = `${gef.length} Dienstleister gefunden`;
 
   const cont = document.getElementById('ergebnisse');
+  
   if(gef.length===0){
-    cont.innerHTML=`<div class="leer"><div class="leer-emoji">🔍</div><h3>Keine Treffer</h3><p>Versuche andere Filtereinstellungen.</p></div>`;
+    // Alternativen vorschlagen wenn Datum gesetzt
+    if(datum) {
+      const alternativen = HANDWERKER.filter(h=>{
+        const mGewerk = !gewerk || h.gewerk===gewerk;
+        return mGewerk && h.verf;
+      }).slice(0,3);
+      
+      if(alternativen.length > 0) {
+        const uhrzeitAlt = uhrzeit ? 
+          ['30 Min später', '1 Std später', 'Am nächsten Tag'].map((t,i) => {
+            const [h,m] = uhrzeit.split(':').map(Number);
+            const neu = new Date(2000,0,1,h,m + (i===0?30:i===1?60:0));
+            return i===2 ? 'nächster Tag' : `${String(neu.getHours()).padStart(2,'0')}:${String(neu.getMinutes()).padStart(2,'0')} Uhr`;
+          }) : [];
+
+        cont.innerHTML = `
+          <div style="background:rgba(200,149,108,0.08);border:1px solid rgba(200,149,108,0.3);padding:20px;margin-bottom:20px;">
+            <div style="font-size:13px;font-weight:700;color:var(--g);margin-bottom:8px;">💡 Für dieses Datum keine Treffer — hier sind Alternativen:</div>
+            ${uhrzeitAlt.length ? `<div style="font-size:12px;color:var(--gr2);">Mögliche Zeiten: ${uhrzeitAlt.join(' · ')}</div>` : ''}
+          </div>
+          ${alternativen.map(h=>`
+            <div class="hw-zeile" onclick="zeigProfil(${h.id})">
+              <div class="hw-zeile-emoji" style="background:${h.farbe}22">${h.emoji}</div>
+              <div class="hw-zeile-mitte">
+                <div class="hw-zeile-name">
+                  <h3>${h.name}</h3>
+                  ${h.paket==='Pro'?'<div class="pro-b">PRO</div>':''}
+                  <div style="color:#34d399;font-size:12px;font-weight:600;">✓ Verfügbar</div>
+                </div>
+                <div class="hw-zeile-meta"><span class="tag">${h.gewerk}</span> &nbsp;📍 ${h.ort}</div>
+                <div class="hw-zeile-desc">${h.desc}</div>
+              </div>
+              <div class="hw-zeile-rechts">
+                <div class="hw-zeile-preis">${h.preis}€<span>/h</span></div>
+                <div class="hw-zeile-rating"><span style="color:var(--g)">★</span> ${h.bew}</div>
+              </div>
+            </div>
+          `).join('')}
+        `;
+        return;
+      }
+    }
+    cont.innerHTML = `<div class="leer"><div class="leer-emoji">🔍</div><h3>Keine Treffer</h3><p>Versuche andere Filtereinstellungen.</p></div>`;
     return;
   }
+  
   cont.innerHTML = gef.map(h=>`
     <div class="hw-zeile" onclick="zeigProfil(${h.id})">
       <div class="hw-zeile-emoji" style="background:${h.farbe}22">${h.emoji}</div>
@@ -771,6 +877,8 @@ function filterReset(){
   document.getElementById('f-gewerk').value='';
   document.getElementById('f-preis').value=200;
   document.getElementById('preis-val').textContent='200€/h';
+  document.getElementById('f-datum').value='';
+  document.getElementById('f-uhrzeit').value='';
   if(document.getElementById('f-leistung'))document.getElementById('f-leistung').value='';
   aktivChip='';
   document.getElementById('chip-gruppe').style.display='none';
@@ -817,12 +925,12 @@ function cookieAblehnen() {
 cookiePruefen();
 
 const PREISE = {
-  handwerk:  { probe: '19,99€', standard: '34,99€' },
-  gesundheit:{ probe: '29,99€', standard: '44,99€' },
-  beauty:    { probe: '9,99€',  standard: '19,99€' },
-  tiere:     { probe: '14,99€', standard: '24,99€' },
-  fitness:   { probe: '14,99€', standard: '24,99€' },
-  auto:      { probe: '19,99€', standard: '34,99€' },
+  handwerk:  { probe: '19,99€', standard: '34,99€', normal: '34,99€' },
+  gesundheit:{ probe: '29,99€', standard: '44,99€', normal: '44,99€' },
+  beauty:    { probe: '9,99€',  standard: '19,99€', normal: '19,99€' },
+  tiere:     { probe: '14,99€', standard: '24,99€', normal: '24,99€' },
+  fitness:   { probe: '14,99€', standard: '24,99€', normal: '24,99€' },
+  auto:      { probe: '19,99€', standard: '34,99€', normal: '34,99€' },
 };
 
 let gewaehlteKategorie = 'handwerk';
@@ -847,6 +955,7 @@ function zeigSeite(id){
 function aktualisiereZahlungsPreise() {
   const p = PREISE[gewaehlteKategorie] || PREISE['handwerk'];
   document.getElementById('probe-preis').textContent = p.probe;
+  document.getElementById('probe-normal-preis').textContent = p.standard;
   document.getElementById('standard-preis-display').textContent = p.standard;
 }
 
@@ -900,11 +1009,13 @@ function heroFilter(gewerk) {
 function heroSuchen() {
   const ort = document.getElementById('hero-ort').value.toLowerCase();
   const freitext = document.getElementById('hero-freitext')?.value.toLowerCase() || '';
+  const datum = document.getElementById('hero-datum')?.value || '';
   let gef = HANDWERKER.filter(h => {
     const mGewerk = !heroGewerk || h.gewerk === heroGewerk;
     const mOrt = !ort || h.ort.toLowerCase().includes(ort) || h.umkreis.toLowerCase().includes(ort);
     const mFreitext = !freitext || h.gewerk.toLowerCase().includes(freitext) || h.name.toLowerCase().includes(freitext) || h.desc.toLowerCase().includes(freitext);
-    return mGewerk && mOrt && mFreitext;
+    const mVerf = !datum || h.verf;
+    return mGewerk && mOrt && mFreitext && mVerf;
   }).sort((a,b) => b.bew - a.bew).slice(0,3);
 
   const wrap = document.getElementById('hero-ergebnisse');
