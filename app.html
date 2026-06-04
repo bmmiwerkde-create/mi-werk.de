@@ -953,7 +953,7 @@ function zeigProfil(id){
   document.getElementById('p-meta').textContent=`${aktivHW.gewerk} · 📍 ${aktivHW.ort} · ${aktivHW.umkreis} · ★ ${aktivHW.bew} (${aktivHW.bew_anz} Bewertungen)`;
   document.getElementById('p-verf').innerHTML=aktivHW.verf?'<span class="verfuegbar">✓ Verfügbar</span>':'<span class="belegt-txt">✗ Derzeit belegt</span>';
   document.getElementById('p-pro').innerHTML=aktivHW.paket==='Pro'?'<div class="pro-b">PRO</div>':'';
-  document.getElementById('p-desc').textContent=aktivHW.desc+' Ich bin seit über einem Jahrzehnt in meinem Handwerk tätig und lege größten Wert auf Qualität und Zuverlässigkeit.';
+  document.getElementById('p-desc').textContent=aktivHW.desc;
   document.getElementById('p-preis').textContent=aktivHW.preis+'€';
   zeigSeite('profil');
 }
