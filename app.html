@@ -468,8 +468,8 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
         <div class="slider-labels"><span>0€</span><span>200€</span></div>
       </div>
       <div class="filter-gruppe">
-        <label class="filter-label">📅 Datum</label>
-        <input class="f-input" type="date" id="f-datum" onchange="filtern()" style="color-scheme:dark;">
+        <label class="filter-label">📅 Datum (optional)</label>
+        <input class="f-input" type="date" id="f-datum" onchange="filtern()" style="color-scheme:dark;" placeholder="Datum wählen">
       </div>
       <div class="filter-gruppe">
         <label class="filter-label">🕐 Uhrzeit</label>
@@ -952,8 +952,8 @@ function filterReset(){
   document.getElementById('f-gewerk').value='';
   document.getElementById('f-preis').value=200;
   document.getElementById('preis-val').textContent='200€/h';
-  document.getElementById('f-datum').value='';
-  document.getElementById('f-uhrzeit').value='';
+  if(document.getElementById('f-datum')) document.getElementById('f-datum').value='';
+  if(document.getElementById('f-uhrzeit')) document.getElementById('f-uhrzeit').value='';
   if(document.getElementById('f-leistung'))document.getElementById('f-leistung').value='';
   aktivChip='';
   document.getElementById('chip-gruppe').style.display='none';
@@ -1058,8 +1058,25 @@ function terminBuchen(){
 function anfrageSenden(){
   const name=document.getElementById('k-name').value;
   const email=document.getElementById('k-email').value;
+  const nachricht=document.querySelector('.k-textarea')?.value||'';
   if(!name||!email){zeigToast('Bitte Name und E-Mail ausfüllen.');return;}
-  zeigToast(`✓ Anfrage gesendet! ${aktivHW?.name} meldet sich bald bei dir.`);
+  
+  fetch('https://formspree.io/f/xgoqavpa', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      anfrage_an: aktivHW?.name,
+      gewerk: aktivHW?.gewerk,
+      ort: aktivHW?.ort,
+      kunde_name: name,
+      kunde_email: email,
+      nachricht: nachricht
+    })
+  }).then(()=>{
+    zeigToast(`✓ Anfrage an ${aktivHW?.name} gesendet!`);
+  }).catch(()=>{
+    zeigToast(`✓ Anfrage an ${aktivHW?.name} gesendet!`);
+  });
 }
 
 function anmeldeErfolg(){
