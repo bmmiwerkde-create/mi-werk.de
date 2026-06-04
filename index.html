@@ -327,6 +327,14 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
           <div style="width:100%;font-size:10px;color:var(--gr);text-align:center;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;margin-top:8px;">🚗 Auto</div>
           <div class="hero-chip" onclick="heroFilter('Autowerkstatt')">🔩 Autowerkstatt</div>
           <div class="hero-chip" onclick="heroFilter('Reifenservice')">🛞 Reifenservice</div>
+          <div style="width:100%;font-size:10px;color:var(--gr);text-align:center;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;margin-top:8px;">🎓 Hilfskräfte</div>
+          <div class="hero-chip" onclick="heroFilter('Bürohilfe')">💼 Bürohilfe</div>
+          <div class="hero-chip" onclick="heroFilter('Lagerhilfe')">📦 Lagerhilfe</div>
+          <div class="hero-chip" onclick="heroFilter('Veranstaltungshelfer')">🎪 Veranstaltung</div>
+          <div class="hero-chip" onclick="heroFilter('Handwerkshelfer')">🔨 Handwerkshelfer</div>
+          <div class="hero-chip" onclick="heroFilter('Pflegehilfe')">❤️ Pflegehilfe</div>
+          <div class="hero-chip" onclick="heroFilter('IT-Hilfe')">💻 IT-Hilfe</div>
+          <div class="hero-chip" onclick="heroFilter('Gastronomiehelfer')">🍽️ Gastronomie</div>
         </div>
       </div>
 
@@ -434,6 +442,15 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
           <optgroup label="🚗 Auto">
             <option>Autowerkstatt</option>
             <option>Reifenservice</option>
+          </optgroup>
+          <optgroup label="🎓 Hilfskräfte">
+            <option>Bürohilfe</option>
+            <option>Lagerhilfe</option>
+            <option>Veranstaltungshelfer</option>
+            <option>Handwerkshelfer</option>
+            <option>Pflegehilfe</option>
+            <option>IT-Hilfe</option>
+            <option>Gastronomiehelfer</option>
           </optgroup>
         </select>
       </div>
@@ -568,6 +585,9 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
             </optgroup>
             <optgroup label="🚗 Auto">
               <option value="auto">Autowerkstatt, Reifenservice etc.</option>
+            </optgroup>
+            <optgroup label="🎓 Hilfskräfte">
+              <option value="hilfe">Bürohilfe, Lagerhilfe, Gastronomie etc.</option>
             </optgroup>
           </select>
         </div>
@@ -768,6 +788,13 @@ const CHIPS = {
   Fahrlehrer:["Führerschein B","Automatik","Intensivkurs","Auffrischung","Motorrad"],
   Autowerkstatt:["Inspektion","TÜV","Reifenwechsel","Bremsen","Unfallschaden"],
   Reifenservice:["Sommerreifen","Winterreifen","Einlagern","Felgen","RDKS"],
+  "Bürohilfe":["Verwaltung","Dateneingabe","Empfang","Ablage","Kopieren"],
+  "Lagerhilfe":["Kommissionierung","Verpackung","Wareneingang","Inventur","Transport"],
+  "Veranstaltungshelfer":["Aufbau","Abbau","Catering","Einlass","Technik"],
+  "Handwerkshelfer":["Materialtransport","Aufräumen","Assistenz","Reinigung","Montage"],
+  "Pflegehilfe":["Betreuung","Begleitung","Hauswirtschaft","Einkaufen","Vorlesen"],
+  "IT-Hilfe":["PC-Support","Netzwerk","Software","Hardware","Einrichtung"],
+  "Gastronomiehelfer":["Service","Küche","Theke","Spülen","Auf- & Abbau"],
 };
 
 let aktivChip = "";
@@ -941,6 +968,7 @@ const PREISE = {
   tiere:     { probe: '14,99€', standard: '24,99€', normal: '24,99€' },
   fitness:   { probe: '14,99€', standard: '24,99€', normal: '24,99€' },
   auto:      { probe: '19,99€', standard: '34,99€', normal: '34,99€' },
+  hilfe:     { probe: '9,99€',  standard: '14,99€', normal: '14,99€' },
 };
 
 let gewaehlteKategorie = 'handwerk';
