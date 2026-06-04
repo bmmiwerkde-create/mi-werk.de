@@ -250,7 +250,13 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
     <button class="nav-link" onclick="zeigSeite('anmelden')">Für Dienstleister</button>
     <a href="index.html" class="nav-link">Warteliste</a>
   </div>
-  <button class="nav-btn" onclick="zeigSeite('anmelden')">Jetzt anmelden</button>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <div style="text-align:right;display:flex;flex-direction:column;gap:2px;">
+      <a href="tel:015780609887" style="font-size:12px;font-weight:600;color:var(--g);text-decoration:none;">📞 0157 80609887</a>
+      <a href="mailto:bm.miwerk.de@gmail.com" style="font-size:11px;color:var(--gr);text-decoration:none;">bm.miwerk.de@gmail.com</a>
+    </div>
+    <button class="nav-btn" onclick="zeigSeite('anmelden')">Jetzt anmelden</button>
+  </div>
 </nav>
 
 <!-- ─── STARTSEITE ─── -->
@@ -282,7 +288,11 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
         <div style="display:flex;gap:12px;margin-bottom:20px;">
           <input class="f-input" id="hero-freitext" placeholder="🔍 Was suchst du? z.B. Elektriker, Friseur, Zahnarzt…" style="flex:1;padding:13px 16px;font-size:15px;" oninput="heroSuchen()">
           <input class="f-input" id="hero-ort" placeholder="📍 Stadt…" style="width:160px;padding:13px 16px;" oninput="heroSuchen()">
-          <input class="f-input" type="date" id="hero-datum" style="width:190px;padding:13px 16px;font-size:15px;color-scheme:dark;" onchange="heroSuchen()">
+          <div style="display:flex;gap:4px;align-items:center;">
+            <input class="f-input" type="number" id="hero-tag" placeholder="TT" min="1" max="31" style="width:58px;padding:13px 8px;font-size:15px;text-align:center;" onchange="heroSuchen()">
+            <input class="f-input" type="number" id="hero-monat" placeholder="MM" min="1" max="12" style="width:58px;padding:13px 8px;font-size:15px;text-align:center;" onchange="heroSuchen()">
+            <input class="f-input" type="number" id="hero-jahr" placeholder="JJJJ" min="2024" max="2030" style="width:78px;padding:13px 8px;font-size:15px;text-align:center;" onchange="heroSuchen()">
+          </div>
           <button class="btn-p" style="padding:13px 24px;font-size:13px;white-space:nowrap;" onclick="heroSuchen()">Suchen</button>
         </div>
         <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--g);margin-bottom:16px;">Kategorie auswählen</div>
@@ -1009,12 +1019,15 @@ function heroFilter(gewerk) {
 function heroSuchen() {
   const ort = document.getElementById('hero-ort').value.toLowerCase();
   const freitext = document.getElementById('hero-freitext')?.value.toLowerCase() || '';
-  const datum = document.getElementById('hero-datum')?.value || '';
+  const datum = document.getElementById('hero-tag')?.value || '';
+  const monat = document.getElementById('hero-monat')?.value || '';
+  const jahr = document.getElementById('hero-jahr')?.value || '';
+  const hatDatum = datum || monat || jahr;
   let gef = HANDWERKER.filter(h => {
     const mGewerk = !heroGewerk || h.gewerk === heroGewerk;
     const mOrt = !ort || h.ort.toLowerCase().includes(ort) || h.umkreis.toLowerCase().includes(ort);
     const mFreitext = !freitext || h.gewerk.toLowerCase().includes(freitext) || h.name.toLowerCase().includes(freitext) || h.desc.toLowerCase().includes(freitext);
-    const mVerf = !datum || h.verf;
+    const mVerf = !hatDatum || h.verf;
     return mGewerk && mOrt && mFreitext && mVerf;
   }).sort((a,b) => b.bew - a.bew).slice(0,3);
 
