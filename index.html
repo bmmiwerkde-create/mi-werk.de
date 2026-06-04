@@ -222,6 +222,7 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
 @media(max-width:768px){
   nav{padding:16px 20px;}
   .nav-links{display:none;}
+  .nav-kontakt{display:none !important;}
   .hero,.top-hw,.vorteile,.suche-header{padding-left:20px;padding-right:20px;}
   .hero-h1{font-size:42px;}
   .hw-grid,.v-grid{grid-template-columns:1fr;}
@@ -251,7 +252,7 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
     <a href="index.html" class="nav-link">Warteliste</a>
   </div>
   <div style="display:flex;align-items:center;gap:16px;">
-    <div style="text-align:right;display:flex;flex-direction:column;gap:2px;">
+    <div style="text-align:right;display:flex;flex-direction:column;gap:2px;" class="nav-kontakt">
       <a href="tel:015780609887" style="font-size:12px;font-weight:600;color:var(--g);text-decoration:none;">📞 0157 80609887</a>
       <a href="mailto:bm.miwerk.de@gmail.com" style="font-size:11px;color:var(--gr);text-decoration:none;">bm.miwerk.de@gmail.com</a>
     </div>
@@ -285,15 +286,15 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
       <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(200,149,108,0.25);padding:28px 32px;margin-bottom:40px;">
         
         <!-- Suchleiste oben -->
-        <div style="display:flex;gap:12px;margin-bottom:20px;">
-          <input class="f-input" id="hero-freitext" placeholder="🔍 Was suchst du? z.B. Elektriker, Friseur, Zahnarzt…" style="flex:1;padding:13px 16px;font-size:15px;" oninput="heroSuchen()">
-          <input class="f-input" id="hero-ort" placeholder="📍 Stadt…" style="width:160px;padding:13px 16px;" oninput="heroSuchen()">
-          <div style="display:flex;gap:4px;align-items:center;">
-            <input class="f-input" type="number" id="hero-tag" placeholder="TT" min="1" max="31" style="width:58px;padding:13px 8px;font-size:15px;text-align:center;" onchange="heroSuchen()">
-            <input class="f-input" type="number" id="hero-monat" placeholder="MM" min="1" max="12" style="width:58px;padding:13px 8px;font-size:15px;text-align:center;" onchange="heroSuchen()">
-            <input class="f-input" type="number" id="hero-jahr" placeholder="JJJJ" min="2024" max="2030" style="width:78px;padding:13px 8px;font-size:15px;text-align:center;" onchange="heroSuchen()">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;">
+          <input class="f-input" id="hero-freitext" placeholder="🔍 Was suchst du?" style="grid-column:1/-1;padding:13px 16px;font-size:15px;" oninput="heroSuchen()">
+          <input class="f-input" id="hero-ort" placeholder="📍 Stadt…" style="padding:13px 16px;" oninput="heroSuchen()">
+          <div style="display:flex;gap:6px;">
+            <input class="f-input" type="number" id="hero-tag" placeholder="TT" min="1" max="31" style="flex:1;padding:13px 6px;font-size:14px;text-align:center;" onchange="heroSuchen()">
+            <input class="f-input" type="number" id="hero-monat" placeholder="MM" min="1" max="12" style="flex:1;padding:13px 6px;font-size:14px;text-align:center;" onchange="heroSuchen()">
+            <input class="f-input" type="number" id="hero-jahr" placeholder="JJJJ" min="2024" max="2030" style="flex:1.5;padding:13px 6px;font-size:14px;text-align:center;" onchange="heroSuchen()">
           </div>
-          <button class="btn-p" style="padding:13px 24px;font-size:13px;white-space:nowrap;" onclick="heroSuchen()">Suchen</button>
+          <button class="btn-p" style="grid-column:1/-1;padding:13px 24px;font-size:13px;" onclick="heroSuchen()">Suchen</button>
         </div>
         <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--g);margin-bottom:16px;">Kategorie auswählen</div>
         <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:24px;" id="hero-chips">
@@ -335,6 +336,7 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
           <div class="hero-chip" onclick="heroFilter('Pflegehilfe')">❤️ Pflegehilfe</div>
           <div class="hero-chip" onclick="heroFilter('IT-Hilfe')">💻 IT-Hilfe</div>
           <div class="hero-chip" onclick="heroFilter('Gastronomiehelfer')">🍽️ Gastronomie</div>
+          <div class="hero-chip" onclick="heroFilter('Medizinstudent')">🩺 Medizinstudent</div>
         </div>
       </div>
 
@@ -451,6 +453,7 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
             <option>Pflegehilfe</option>
             <option>IT-Hilfe</option>
             <option>Gastronomiehelfer</option>
+            <option>Medizinstudent</option>
           </optgroup>
         </select>
       </div>
@@ -795,6 +798,7 @@ const CHIPS = {
   "Pflegehilfe":["Betreuung","Begleitung","Hauswirtschaft","Einkaufen","Vorlesen"],
   "IT-Hilfe":["PC-Support","Netzwerk","Software","Hardware","Einrichtung"],
   "Gastronomiehelfer":["Service","Küche","Theke","Spülen","Auf- & Abbau"],
+  "Medizinstudent":["Praxisassistenz","Forschung","Patientenbetreuung","Verwaltung","Blutabnahme"],
 };
 
 let aktivChip = "";
