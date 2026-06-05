@@ -12,18 +12,13 @@
   gtag('js', new Date());
   gtag('config', 'G-6Z4QHP5KR2');
 </script>
-<!-- EmailJS -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-  (function(){
-    // ⚠️ Einrichten auf emailjs.com → Public Key eintragen:
-    emailjs.init({ publicKey: 'YOUR_EMAILJS_PUBLIC_KEY' });
-  })();
-  // Service ID + Template ID hier eintragen:
-  const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // z.B. 'service_abc123'
-  const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // z.B. 'template_xyz789'
+  emailjs.init({ publicKey: 'YOUR_EMAILJS_PUBLIC_KEY' });
+  const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
+  const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
   --s: #000000;
@@ -574,7 +569,7 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
           <input class="k-input" placeholder="max@beispiel.de" id="k-email">
           <label class="k-label">Nachricht</label>
           <textarea class="k-textarea" placeholder="Beschreibe kurz dein Projekt…"></textarea>
-          <button class="k-btn" id="k-send-btn" onclick="anfrageSenden()">Anfrage senden</button>
+          <button class="k-btn" onclick="anfrageSenden()">Anfrage senden</button>
           <div class="k-hinweis">Kostenlos und unverbindlich</div>
           <div style="margin-top:14px;border-top:1px solid var(--rand);padding-top:14px;">
             <button class="k-btn" style="background:transparent;border:1px solid var(--g);color:var(--g);" onclick="terminBuchen()">📅 Termin buchen</button>
@@ -595,15 +590,7 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
       <p>Werde sichtbar für tausende Kunden in deiner Region.</p>
     </div>
     <div class="anmelden-box">
-      <form action="https://formspree.io/f/xgoqavpa" method="POST" onsubmit="
-        const plz=document.getElementById('anmeld-plz');
-        if(plz && !/^\d{5}$/.test(plz.value)){
-          document.getElementById('plz-hinweis').style.display='block';
-          plz.focus();
-          event.preventDefault();
-          return;
-        }
-        speichereKategorie();setTimeout(()=>zeigSeite('zahlung'),100)">
+      <form action="https://formspree.io/f/xgoqavpa" method="POST" onsubmit="speichereKategorie();setTimeout(()=>zeigSeite('zahlung'),100)">
       <div class="a-row">
         <div><label class="a-label">Vorname</label><input class="a-input" name="vorname" placeholder="Max"></div>
         <div><label class="a-label">Nachname</label><input class="a-input" name="nachname" placeholder="Mustermann"></div>
@@ -644,20 +631,15 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
             </optgroup>
           </select>
         </div>
-        <div>
-          <label class="a-label">Stadt</label>
-          <input class="a-input" name="stadt" placeholder="Bochum">
-        </div>
+        <div><label class="a-label">Stadt</label><input class="a-input" name="stadt" placeholder="Bochum"></div>
       </div>
-      <!-- ✅ NEU: Postleitzahl als eigenes Feld -->
       <div class="a-row">
         <div>
-          <label class="a-label">Postleitzahl <span style="color:var(--g)">*</span></label>
-          <input class="a-input" name="plz" id="anmeld-plz" placeholder="44801" maxlength="5" pattern="\d{5}" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'').slice(0,5)" required>
-          <div id="plz-hinweis" style="font-size:11px;color:var(--g);margin-top:4px;display:none;">Bitte 5-stellige PLZ eingeben</div>
+          <label class="a-label">Postleitzahl</label>
+          <input class="a-input" name="plz" id="anmeld-plz" placeholder="44801" maxlength="5" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'').slice(0,5)">
         </div>
         <div>
-          <label class="a-label">Umkreis (km)</label>
+          <label class="a-label">Umkreis</label>
           <input class="a-input" name="umkreis" placeholder="z.B. 30 km">
         </div>
       </div>
@@ -733,7 +715,7 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
 <!-- ─── KONTAKT ─── -->
 <div id="kontakt" class="page">
   <div style="max-width:800px;margin:0 auto;padding:64px 24px;">
-    <button onclick="history.back()" style="font-size:12px;font-weight:600;color:var(--gr2);letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;background:none;border:none;margin-bottom:32px;display:block;">← Zurück</button>
+    <button onclick="zeigSeite('start')" style="font-size:12px;font-weight:600;color:var(--gr2);letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;background:none;border:none;margin-bottom:32px;display:block;">← Zurück</button>
     <h1 style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;margin-bottom:32px;">Kontakt</h1>
     <div style="background:var(--s2);border:1px solid var(--rand);padding:36px;">
       <p style="font-size:15px;color:var(--gr2);margin-bottom:32px;line-height:1.8;">Du hast Fragen zu Mi-Werk oder möchtest dich als Dienstleister eintragen? Melde dich gerne direkt bei mir!</p>
@@ -770,7 +752,7 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
 <!-- ─── IMPRESSUM ─── -->
 <div id="impressum" class="page">
   <div style="max-width:800px;margin:0 auto;padding:64px 24px;">
-    <button onclick="history.back()" style="font-size:12px;font-weight:600;color:var(--gr2);letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;background:none;border:none;margin-bottom:32px;display:block;">← Zurück</button>
+    <button onclick="zeigSeite('start')" style="font-size:12px;font-weight:600;color:var(--gr2);letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;background:none;border:none;margin-bottom:32px;display:block;">← Zurück</button>
     <h1 style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;margin-bottom:32px;">Impressum</h1>
     <div style="background:var(--s2);border:1px solid var(--rand);padding:36px;line-height:1.8;color:var(--gr2);font-size:15px;">
       <p style="margin-bottom:16px;"><strong style="color:var(--w);">Angaben gemäß § 5 TMG</strong></p>
@@ -792,7 +774,7 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
 <!-- ─── DATENSCHUTZ ─── -->
 <div id="datenschutz" class="page">
   <div style="max-width:800px;margin:0 auto;padding:64px 24px;">
-    <button onclick="history.back()" style="font-size:12px;font-weight:600;color:var(--gr2);letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;background:none;border:none;margin-bottom:32px;display:block;">← Zurück</button>
+    <button onclick="zeigSeite('start')" style="font-size:12px;font-weight:600;color:var(--gr2);letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;background:none;border:none;margin-bottom:32px;display:block;">← Zurück</button>
     <h1 style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;margin-bottom:32px;">Datenschutz</h1>
     <div style="background:var(--s2);border:1px solid var(--rand);padding:36px;line-height:1.8;color:var(--gr2);font-size:15px;">
       <p style="margin-bottom:16px;"><strong style="color:var(--w);">1. Verantwortlicher</strong></p>
@@ -812,7 +794,7 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
 <!-- ─── AGB ─── -->
 <div id="agb" class="page">
   <div style="max-width:800px;margin:0 auto;padding:64px 24px;">
-    <button onclick="history.back()" style="font-size:12px;font-weight:600;color:var(--gr2);letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;background:none;border:none;margin-bottom:32px;display:block;">← Zurück</button>
+    <button onclick="zeigSeite('start')" style="font-size:12px;font-weight:600;color:var(--gr2);letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;background:none;border:none;margin-bottom:32px;display:block;">← Zurück</button>
     <h1 style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;margin-bottom:32px;">AGB</h1>
     <div style="background:var(--s2);border:1px solid var(--rand);padding:36px;line-height:1.8;color:var(--gr2);font-size:15px;">
       <p style="margin-bottom:16px;"><strong style="color:var(--w);">1. Geltungsbereich</strong></p>
@@ -1042,12 +1024,6 @@ function zeigProfil(id){
   document.getElementById('p-pro').innerHTML=aktivHW.paket==='Pro'?'<div class="pro-b">PRO</div>':'';
   document.getElementById('p-desc').textContent=aktivHW.desc;
   document.getElementById('p-preis').textContent=aktivHW.preis+'€';
-  // Reset Kontaktformular
-  const btn = document.getElementById('k-send-btn');
-  if(btn){btn.disabled=false;btn.textContent='Anfrage senden';}
-  document.getElementById('k-name').value='';
-  document.getElementById('k-email').value='';
-  const ta=document.querySelector('.k-textarea');if(ta)ta.value='';
   zeigSeite('profil');
 }
 
@@ -1134,45 +1110,21 @@ function terminBuchen(){
 }
 
 function anfrageSenden(){
-  const name=document.getElementById('k-name').value.trim();
-  const email=document.getElementById('k-email').value.trim();
-  const nachricht=document.querySelector('.k-textarea')?.value.trim()||'';
+  const name=document.getElementById('k-name').value;
+  const email=document.getElementById('k-email').value;
+  const nachricht=document.querySelector('.k-textarea')?.value||'';
   if(!name||!email){zeigToast('Bitte Name und E-Mail ausfüllen.');return;}
-
-  const btn = document.getElementById('k-send-btn');
-  btn.disabled = true;
-  btn.textContent = 'Wird gesendet …';
-
+  const btn=document.querySelector('.k-btn');
+  if(btn){btn.disabled=true;btn.textContent='Wird gesendet…';}
   emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-    from_name:   name,
-    from_email:  email,
-    message:     nachricht || '(Keine Nachricht)',
-    to_provider: aktivHW?.name || 'Unbekannt',
-    gewerk:      aktivHW?.gewerk || '',
-    reply_to:    email
-  }).then(() => {
+    from_name: name, from_email: email, message: nachricht||'(Keine Nachricht)',
+    to_provider: aktivHW?.name||'', gewerk: aktivHW?.gewerk||'', reply_to: email
+  }).then(()=>{
     zeigToast(`✓ Anfrage an ${aktivHW?.name} gesendet!`);
-    btn.textContent = '✓ Gesendet';
-    document.getElementById('k-name').value='';
-    document.getElementById('k-email').value='';
-    document.querySelector('.k-textarea').value='';
-  }).catch(() => {
-    // Fallback: Formspree
-    fetch('https://formspree.io/f/xgoqavpa', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        anfrage_an: aktivHW?.name,
-        gewerk: aktivHW?.gewerk,
-        ort: aktivHW?.ort,
-        kunde_name: name,
-        kunde_email: email,
-        nachricht: nachricht
-      })
-    }).finally(() => {
-      zeigToast(`✓ Anfrage an ${aktivHW?.name} gesendet!`);
-      btn.textContent = '✓ Gesendet';
-    });
+    if(btn){btn.disabled=false;btn.textContent='Anfrage senden';}
+  }).catch(()=>{
+    fetch('https://formspree.io/f/xgoqavpa',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({anfrage_an:aktivHW?.name,gewerk:aktivHW?.gewerk,ort:aktivHW?.ort,kunde_name:name,kunde_email:email,nachricht})})
+    .finally(()=>{zeigToast(`✓ Anfrage an ${aktivHW?.name} gesendet!`);if(btn){btn.disabled=false;btn.textContent='Anfrage senden';}});
   });
 }
 
