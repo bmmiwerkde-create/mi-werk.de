@@ -13,6 +13,12 @@
   gtag('config', 'G-6Z4QHP5KR2');
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  emailjs.init({ publicKey: 'YOUR_EMAILJS_PUBLIC_KEY' });
+  const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
+  const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+</script>
 <style>
 :root {
   --s: #000000;
@@ -338,6 +344,12 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
           <div style="width:100%;font-size:10px;color:var(--gr);text-align:center;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;margin-top:8px;">🚗 Auto</div>
           <div class="hero-chip" onclick="heroFilter('Autowerkstatt')">🔩 Autowerkstatt</div>
           <div class="hero-chip" onclick="heroFilter('Reifenservice')">🛞 Reifenservice</div>
+          <div style="width:100%;font-size:10px;color:var(--gr);text-align:center;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;margin-top:8px;">📸 Foto &amp; Video</div>
+          <div class="hero-chip" onclick="heroFilter('Fotograf')">📷 Fotograf</div>
+          <div class="hero-chip" onclick="heroFilter('Videograf')">🎥 Videograf</div>
+          <div class="hero-chip" onclick="heroFilter('Drohnenpilot')">🚁 Drohnenpilot</div>
+          <div class="hero-chip" onclick="heroFilter('Hochzeitsfotograf')">💍 Hochzeit</div>
+          <div class="hero-chip" onclick="heroFilter('Produktfotograf')">📦 Produkt</div>
           <div style="width:100%;font-size:10px;color:var(--gr);text-align:center;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;margin-top:8px;">🎓 Hilfskräfte</div>
           <div class="hero-chip" onclick="heroFilter('Bürohilfe')">💼 Bürohilfe</div>
           <div class="hero-chip" onclick="heroFilter('Lagerhilfe')">📦 Lagerhilfe</div>
@@ -347,6 +359,7 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
           <div class="hero-chip" onclick="heroFilter('IT-Hilfe')">💻 IT-Hilfe</div>
           <div class="hero-chip" onclick="heroFilter('Gastronomiehelfer')">🍽️ Gastronomie</div>
           <div class="hero-chip" onclick="heroFilter('Medizinstudent')">🩺 Medizinstudent</div>
+          <div class="hero-chip" onclick="heroFilter('Studentische Hilfskraft')">🎓 Stud. Hilfskraft</div>
         </div>
       </div>
 
@@ -456,6 +469,13 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
             <option>Autowerkstatt</option>
             <option>Reifenservice</option>
           </optgroup>
+          <optgroup label="📸 Foto &amp; Video">
+            <option>Fotograf</option>
+            <option>Videograf</option>
+            <option>Drohnenpilot</option>
+            <option>Hochzeitsfotograf</option>
+            <option>Produktfotograf</option>
+          </optgroup>
           <optgroup label="🎓 Hilfskräfte">
             <option>Bürohilfe</option>
             <option>Lagerhilfe</option>
@@ -465,6 +485,7 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
             <option>IT-Hilfe</option>
             <option>Gastronomiehelfer</option>
             <option>Medizinstudent</option>
+            <option>Studentische Hilfskraft</option>
           </optgroup>
         </select>
       </div>
@@ -601,12 +622,26 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
             <optgroup label="🚗 Auto">
               <option value="auto">Autowerkstatt, Reifenservice etc.</option>
             </optgroup>
+            <optgroup label="📸 Foto &amp; Video">
+              <option value="foto">Fotograf, Videograf, Drohnenpilot etc.</option>
+            </optgroup>
             <optgroup label="🎓 Hilfskräfte">
               <option value="hilfe">Bürohilfe, Lagerhilfe, Gastronomie etc.</option>
+              <option value="hilfe">Studentische Hilfskraft</option>
             </optgroup>
           </select>
         </div>
-        <div><label class="a-label">Stadt / PLZ</label><input class="a-input" name="stadt" placeholder="Bochum, 44801"></div>
+        <div><label class="a-label">Stadt</label><input class="a-input" name="stadt" placeholder="Bochum"></div>
+      </div>
+      <div class="a-row">
+        <div>
+          <label class="a-label">Postleitzahl</label>
+          <input class="a-input" name="plz" id="anmeld-plz" placeholder="44801" maxlength="5" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'').slice(0,5)">
+        </div>
+        <div>
+          <label class="a-label">Umkreis</label>
+          <input class="a-input" name="umkreis" placeholder="z.B. 30 km">
+        </div>
       </div>
       <label class="a-label">Genaues Gewerk / Tätigkeit</label>
       <input class="a-input" name="gewerk_genau" placeholder="z.B. Nagelstudio, Elektroinstallation, Kinderzahnarzt…">
@@ -680,7 +715,7 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
 <!-- ─── KONTAKT ─── -->
 <div id="kontakt" class="page">
   <div style="max-width:800px;margin:0 auto;padding:64px 24px;">
-    <button onclick="history.back()" style="font-size:12px;font-weight:600;color:var(--gr2);letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;background:none;border:none;margin-bottom:32px;display:block;">← Zurück</button>
+    <button onclick="zeigSeite('start')" style="font-size:12px;font-weight:600;color:var(--gr2);letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;background:none;border:none;margin-bottom:32px;display:block;">← Zurück</button>
     <h1 style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;margin-bottom:32px;">Kontakt</h1>
     <div style="background:var(--s2);border:1px solid var(--rand);padding:36px;">
       <p style="font-size:15px;color:var(--gr2);margin-bottom:32px;line-height:1.8;">Du hast Fragen zu Mi-Werk oder möchtest dich als Dienstleister eintragen? Melde dich gerne direkt bei mir!</p>
@@ -717,7 +752,7 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
 <!-- ─── IMPRESSUM ─── -->
 <div id="impressum" class="page">
   <div style="max-width:800px;margin:0 auto;padding:64px 24px;">
-    <button onclick="history.back()" style="font-size:12px;font-weight:600;color:var(--gr2);letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;background:none;border:none;margin-bottom:32px;display:block;">← Zurück</button>
+    <button onclick="zeigSeite('start')" style="font-size:12px;font-weight:600;color:var(--gr2);letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;background:none;border:none;margin-bottom:32px;display:block;">← Zurück</button>
     <h1 style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;margin-bottom:32px;">Impressum</h1>
     <div style="background:var(--s2);border:1px solid var(--rand);padding:36px;line-height:1.8;color:var(--gr2);font-size:15px;">
       <p style="margin-bottom:16px;"><strong style="color:var(--w);">Angaben gemäß § 5 TMG</strong></p>
@@ -739,7 +774,7 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
 <!-- ─── DATENSCHUTZ ─── -->
 <div id="datenschutz" class="page">
   <div style="max-width:800px;margin:0 auto;padding:64px 24px;">
-    <button onclick="history.back()" style="font-size:12px;font-weight:600;color:var(--gr2);letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;background:none;border:none;margin-bottom:32px;display:block;">← Zurück</button>
+    <button onclick="zeigSeite('start')" style="font-size:12px;font-weight:600;color:var(--gr2);letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;background:none;border:none;margin-bottom:32px;display:block;">← Zurück</button>
     <h1 style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;margin-bottom:32px;">Datenschutz</h1>
     <div style="background:var(--s2);border:1px solid var(--rand);padding:36px;line-height:1.8;color:var(--gr2);font-size:15px;">
       <p style="margin-bottom:16px;"><strong style="color:var(--w);">1. Verantwortlicher</strong></p>
@@ -759,7 +794,7 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
 <!-- ─── AGB ─── -->
 <div id="agb" class="page">
   <div style="max-width:800px;margin:0 auto;padding:64px 24px;">
-    <button onclick="history.back()" style="font-size:12px;font-weight:600;color:var(--gr2);letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;background:none;border:none;margin-bottom:32px;display:block;">← Zurück</button>
+    <button onclick="zeigSeite('start')" style="font-size:12px;font-weight:600;color:var(--gr2);letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;background:none;border:none;margin-bottom:32px;display:block;">← Zurück</button>
     <h1 style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;margin-bottom:32px;">AGB</h1>
     <div style="background:var(--s2);border:1px solid var(--rand);padding:36px;line-height:1.8;color:var(--gr2);font-size:15px;">
       <p style="margin-bottom:16px;"><strong style="color:var(--w);">1. Geltungsbereich</strong></p>
@@ -845,6 +880,12 @@ const CHIPS = {
   "IT-Hilfe":["PC-Support","Netzwerk","Software","Hardware","Einrichtung"],
   "Gastronomiehelfer":["Service","Küche","Theke","Spülen","Auf- & Abbau"],
   "Medizinstudent":["Praxisassistenz","Forschung","Patientenbetreuung","Verwaltung","Blutabnahme"],
+  "Studentische Hilfskraft":["Büroarbeit","Datenerfassung","Recherche","Betreuung","IT-Unterstützung"],
+  "Fotograf":["Portrait","Hochzeit","Event","Produkt","Immobilien"],
+  "Videograf":["Imagevideo","Hochzeit","Event","Social Media","Musikvideo"],
+  "Drohnenpilot":["Luftaufnahmen","Inspektion","Immobilien","Event","Landschaft"],
+  "Hochzeitsfotograf":["Reportage","Portrait","Getting Ready","Standesamt","Feier"],
+  "Produktfotograf":["E-Commerce","Lifestyle","Packshot","360°","Food"],
 };
 
 let aktivChip = "";
@@ -1019,6 +1060,7 @@ const PREISE = {
   fitness:   { probe: '14,99€', standard: '24,99€', normal: '24,99€' },
   auto:      { probe: '19,99€', standard: '34,99€', normal: '34,99€' },
   hilfe:     { probe: '9,99€',  standard: '14,99€', normal: '14,99€' },
+  foto:      { probe: '14,99€', standard: '24,99€', normal: '24,99€' },
 };
 
 let gewaehlteKategorie = 'handwerk';
@@ -1072,22 +1114,17 @@ function anfrageSenden(){
   const email=document.getElementById('k-email').value;
   const nachricht=document.querySelector('.k-textarea')?.value||'';
   if(!name||!email){zeigToast('Bitte Name und E-Mail ausfüllen.');return;}
-  
-  fetch('https://formspree.io/f/xgoqavpa', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
-      anfrage_an: aktivHW?.name,
-      gewerk: aktivHW?.gewerk,
-      ort: aktivHW?.ort,
-      kunde_name: name,
-      kunde_email: email,
-      nachricht: nachricht
-    })
+  const btn=document.querySelector('.k-btn');
+  if(btn){btn.disabled=true;btn.textContent='Wird gesendet…';}
+  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+    from_name: name, from_email: email, message: nachricht||'(Keine Nachricht)',
+    to_provider: aktivHW?.name||'', gewerk: aktivHW?.gewerk||'', reply_to: email
   }).then(()=>{
     zeigToast(`✓ Anfrage an ${aktivHW?.name} gesendet!`);
+    if(btn){btn.disabled=false;btn.textContent='Anfrage senden';}
   }).catch(()=>{
-    zeigToast(`✓ Anfrage an ${aktivHW?.name} gesendet!`);
+    fetch('https://formspree.io/f/xgoqavpa',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({anfrage_an:aktivHW?.name,gewerk:aktivHW?.gewerk,ort:aktivHW?.ort,kunde_name:name,kunde_email:email,nachricht})})
+    .finally(()=>{zeigToast(`✓ Anfrage an ${aktivHW?.name} gesendet!`);if(btn){btn.disabled=false;btn.textContent='Anfrage senden';}});
   });
 }
 
