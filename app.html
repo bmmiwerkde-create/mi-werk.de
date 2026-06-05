@@ -12,6 +12,17 @@
   gtag('js', new Date());
   gtag('config', 'G-6Z4QHP5KR2');
 </script>
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  (function(){
+    // ⚠️ Einrichten auf emailjs.com → Public Key eintragen:
+    emailjs.init({ publicKey: 'YOUR_EMAILJS_PUBLIC_KEY' });
+  })();
+  // Service ID + Template ID hier eintragen:
+  const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // z.B. 'service_abc123'
+  const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // z.B. 'template_xyz789'
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -338,6 +349,12 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
           <div style="width:100%;font-size:10px;color:var(--gr);text-align:center;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;margin-top:8px;">🚗 Auto</div>
           <div class="hero-chip" onclick="heroFilter('Autowerkstatt')">🔩 Autowerkstatt</div>
           <div class="hero-chip" onclick="heroFilter('Reifenservice')">🛞 Reifenservice</div>
+          <div style="width:100%;font-size:10px;color:var(--gr);text-align:center;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;margin-top:8px;">📸 Foto &amp; Video</div>
+          <div class="hero-chip" onclick="heroFilter('Fotograf')">📷 Fotograf</div>
+          <div class="hero-chip" onclick="heroFilter('Videograf')">🎥 Videograf</div>
+          <div class="hero-chip" onclick="heroFilter('Drohnenpilot')">🚁 Drohnenpilot</div>
+          <div class="hero-chip" onclick="heroFilter('Hochzeitsfotograf')">💍 Hochzeit</div>
+          <div class="hero-chip" onclick="heroFilter('Produktfotograf')">📦 Produkt</div>
           <div style="width:100%;font-size:10px;color:var(--gr);text-align:center;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;margin-top:8px;">🎓 Hilfskräfte</div>
           <div class="hero-chip" onclick="heroFilter('Bürohilfe')">💼 Bürohilfe</div>
           <div class="hero-chip" onclick="heroFilter('Lagerhilfe')">📦 Lagerhilfe</div>
@@ -347,6 +364,7 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
           <div class="hero-chip" onclick="heroFilter('IT-Hilfe')">💻 IT-Hilfe</div>
           <div class="hero-chip" onclick="heroFilter('Gastronomiehelfer')">🍽️ Gastronomie</div>
           <div class="hero-chip" onclick="heroFilter('Medizinstudent')">🩺 Medizinstudent</div>
+          <div class="hero-chip" onclick="heroFilter('Studentische Hilfskraft')">🎓 Stud. Hilfskraft</div>
         </div>
       </div>
 
@@ -456,6 +474,13 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
             <option>Autowerkstatt</option>
             <option>Reifenservice</option>
           </optgroup>
+          <optgroup label="📸 Foto &amp; Video">
+            <option>Fotograf</option>
+            <option>Videograf</option>
+            <option>Drohnenpilot</option>
+            <option>Hochzeitsfotograf</option>
+            <option>Produktfotograf</option>
+          </optgroup>
           <optgroup label="🎓 Hilfskräfte">
             <option>Bürohilfe</option>
             <option>Lagerhilfe</option>
@@ -465,6 +490,7 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
             <option>IT-Hilfe</option>
             <option>Gastronomiehelfer</option>
             <option>Medizinstudent</option>
+            <option>Studentische Hilfskraft</option>
           </optgroup>
         </select>
       </div>
@@ -548,7 +574,7 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
           <input class="k-input" placeholder="max@beispiel.de" id="k-email">
           <label class="k-label">Nachricht</label>
           <textarea class="k-textarea" placeholder="Beschreibe kurz dein Projekt…"></textarea>
-          <button class="k-btn" onclick="anfrageSenden()">Anfrage senden</button>
+          <button class="k-btn" id="k-send-btn" onclick="anfrageSenden()">Anfrage senden</button>
           <div class="k-hinweis">Kostenlos und unverbindlich</div>
           <div style="margin-top:14px;border-top:1px solid var(--rand);padding-top:14px;">
             <button class="k-btn" style="background:transparent;border:1px solid var(--g);color:var(--g);" onclick="terminBuchen()">📅 Termin buchen</button>
@@ -569,7 +595,15 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
       <p>Werde sichtbar für tausende Kunden in deiner Region.</p>
     </div>
     <div class="anmelden-box">
-      <form action="https://formspree.io/f/xgoqavpa" method="POST" onsubmit="speichereKategorie();setTimeout(()=>zeigSeite('zahlung'),100)">
+      <form action="https://formspree.io/f/xgoqavpa" method="POST" onsubmit="
+        const plz=document.getElementById('anmeld-plz');
+        if(plz && !/^\d{5}$/.test(plz.value)){
+          document.getElementById('plz-hinweis').style.display='block';
+          plz.focus();
+          event.preventDefault();
+          return;
+        }
+        speichereKategorie();setTimeout(()=>zeigSeite('zahlung'),100)">
       <div class="a-row">
         <div><label class="a-label">Vorname</label><input class="a-input" name="vorname" placeholder="Max"></div>
         <div><label class="a-label">Nachname</label><input class="a-input" name="nachname" placeholder="Mustermann"></div>
@@ -601,12 +635,31 @@ footer{padding:36px 48px;border-top:1px solid var(--rand);display:flex;align-ite
             <optgroup label="🚗 Auto">
               <option value="auto">Autowerkstatt, Reifenservice etc.</option>
             </optgroup>
+            <optgroup label="📸 Foto &amp; Video">
+              <option value="foto">Fotograf, Videograf, Drohnenpilot etc.</option>
+            </optgroup>
             <optgroup label="🎓 Hilfskräfte">
               <option value="hilfe">Bürohilfe, Lagerhilfe, Gastronomie etc.</option>
+              <option value="hilfe">Studentische Hilfskraft</option>
             </optgroup>
           </select>
         </div>
-        <div><label class="a-label">Stadt / PLZ</label><input class="a-input" name="stadt" placeholder="Bochum, 44801"></div>
+        <div>
+          <label class="a-label">Stadt</label>
+          <input class="a-input" name="stadt" placeholder="Bochum">
+        </div>
+      </div>
+      <!-- ✅ NEU: Postleitzahl als eigenes Feld -->
+      <div class="a-row">
+        <div>
+          <label class="a-label">Postleitzahl <span style="color:var(--g)">*</span></label>
+          <input class="a-input" name="plz" id="anmeld-plz" placeholder="44801" maxlength="5" pattern="\d{5}" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'').slice(0,5)" required>
+          <div id="plz-hinweis" style="font-size:11px;color:var(--g);margin-top:4px;display:none;">Bitte 5-stellige PLZ eingeben</div>
+        </div>
+        <div>
+          <label class="a-label">Umkreis (km)</label>
+          <input class="a-input" name="umkreis" placeholder="z.B. 30 km">
+        </div>
       </div>
       <label class="a-label">Genaues Gewerk / Tätigkeit</label>
       <input class="a-input" name="gewerk_genau" placeholder="z.B. Nagelstudio, Elektroinstallation, Kinderzahnarzt…">
@@ -845,6 +898,12 @@ const CHIPS = {
   "IT-Hilfe":["PC-Support","Netzwerk","Software","Hardware","Einrichtung"],
   "Gastronomiehelfer":["Service","Küche","Theke","Spülen","Auf- & Abbau"],
   "Medizinstudent":["Praxisassistenz","Forschung","Patientenbetreuung","Verwaltung","Blutabnahme"],
+  "Studentische Hilfskraft":["Büroarbeit","Datenerfassung","Recherche","Betreuung","IT-Unterstützung"],
+  "Fotograf":["Portrait","Hochzeit","Event","Produkt","Immobilien"],
+  "Videograf":["Imagevideo","Hochzeit","Event","Social Media","Musikvideo"],
+  "Drohnenpilot":["Luftaufnahmen","Inspektion","Immobilien","Event","Landschaft"],
+  "Hochzeitsfotograf":["Reportage","Portrait","Getting Ready","Standesamt","Feier"],
+  "Produktfotograf":["E-Commerce","Lifestyle","Packshot","360°","Food"],
 };
 
 let aktivChip = "";
@@ -983,6 +1042,12 @@ function zeigProfil(id){
   document.getElementById('p-pro').innerHTML=aktivHW.paket==='Pro'?'<div class="pro-b">PRO</div>':'';
   document.getElementById('p-desc').textContent=aktivHW.desc;
   document.getElementById('p-preis').textContent=aktivHW.preis+'€';
+  // Reset Kontaktformular
+  const btn = document.getElementById('k-send-btn');
+  if(btn){btn.disabled=false;btn.textContent='Anfrage senden';}
+  document.getElementById('k-name').value='';
+  document.getElementById('k-email').value='';
+  const ta=document.querySelector('.k-textarea');if(ta)ta.value='';
   zeigSeite('profil');
 }
 
@@ -1019,6 +1084,7 @@ const PREISE = {
   fitness:   { probe: '14,99€', standard: '24,99€', normal: '24,99€' },
   auto:      { probe: '19,99€', standard: '34,99€', normal: '34,99€' },
   hilfe:     { probe: '9,99€',  standard: '14,99€', normal: '14,99€' },
+  foto:      { probe: '14,99€', standard: '24,99€', normal: '24,99€' },
 };
 
 let gewaehlteKategorie = 'handwerk';
@@ -1068,26 +1134,45 @@ function terminBuchen(){
 }
 
 function anfrageSenden(){
-  const name=document.getElementById('k-name').value;
-  const email=document.getElementById('k-email').value;
-  const nachricht=document.querySelector('.k-textarea')?.value||'';
+  const name=document.getElementById('k-name').value.trim();
+  const email=document.getElementById('k-email').value.trim();
+  const nachricht=document.querySelector('.k-textarea')?.value.trim()||'';
   if(!name||!email){zeigToast('Bitte Name und E-Mail ausfüllen.');return;}
-  
-  fetch('https://formspree.io/f/xgoqavpa', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
-      anfrage_an: aktivHW?.name,
-      gewerk: aktivHW?.gewerk,
-      ort: aktivHW?.ort,
-      kunde_name: name,
-      kunde_email: email,
-      nachricht: nachricht
-    })
-  }).then(()=>{
+
+  const btn = document.getElementById('k-send-btn');
+  btn.disabled = true;
+  btn.textContent = 'Wird gesendet …';
+
+  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+    from_name:   name,
+    from_email:  email,
+    message:     nachricht || '(Keine Nachricht)',
+    to_provider: aktivHW?.name || 'Unbekannt',
+    gewerk:      aktivHW?.gewerk || '',
+    reply_to:    email
+  }).then(() => {
     zeigToast(`✓ Anfrage an ${aktivHW?.name} gesendet!`);
-  }).catch(()=>{
-    zeigToast(`✓ Anfrage an ${aktivHW?.name} gesendet!`);
+    btn.textContent = '✓ Gesendet';
+    document.getElementById('k-name').value='';
+    document.getElementById('k-email').value='';
+    document.querySelector('.k-textarea').value='';
+  }).catch(() => {
+    // Fallback: Formspree
+    fetch('https://formspree.io/f/xgoqavpa', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        anfrage_an: aktivHW?.name,
+        gewerk: aktivHW?.gewerk,
+        ort: aktivHW?.ort,
+        kunde_name: name,
+        kunde_email: email,
+        nachricht: nachricht
+      })
+    }).finally(() => {
+      zeigToast(`✓ Anfrage an ${aktivHW?.name} gesendet!`);
+      btn.textContent = '✓ Gesendet';
+    });
   });
 }
 
